@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "dev": "servor --reload",
+    "build": "mkdir -p dist && cp -r *.html *.css *.js dist/"
+  },
+  "dependencies": {
+    "servor": "^4.0.2",
+    "alpinejs": "^3.13.3",
+    "boxicons": "^2.1.4",
+    "fuse.js": "^7.0.0"
+  }
+}

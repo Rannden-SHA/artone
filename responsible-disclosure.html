@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Divulgación Responsable | Art One - Plataforma C&C de Pentesting</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Política de divulgación responsable de Art One - Plataforma avanzada de Command & Control para pentesting y ciberseguridad." />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script defer src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <script type="module" src="script.js"></script>
+    <style>
+      .disclosure-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+      
+      .disclosure-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      
+      .disclosure-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .disclosure-header p {
+        color: var(--text-secondary);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .disclosure-content {
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+      }
+      
+      .disclosure-section {
+        margin-bottom: 3rem;
+      }
+      
+      .disclosure-section:last-child {
+        margin-bottom: 0;
+      }
+      
+      .disclosure-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        color: var(--accent-primary);
+        text-align: left;
+      }
+      
+      .disclosure-section h3 {
+        font-size: 1.3rem;
+        margin: 2rem 0 1rem;
+        color: var(--text-primary);
+      }
+      
+      .disclosure-section p {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+      
+      .disclosure-section ul {
+        margin: 1rem 0 1.5rem 1.5rem;
+      }
+      
+      .disclosure-section li {
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+      }
+      
+      .scope-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+      }
+      
+      .scope-table th,
+      .scope-table td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+      }
+      
+      .scope-table th {
+        background-color: var(--bg-tertiary);
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+      
+      .scope-table td {
+        color: var(--text-secondary);
+      }
+      
+      .scope-table tr:last-child td {
+        border-bottom: none;
+      }
+      
+      .disclosure-notice {
+        background-color: rgba(0, 229, 255, 0.1);
+        border: 1px solid var(--accent-primary);
+        border-radius: 4px;
+        padding: 1.5rem;
+        margin: 2rem 0;
+      }
+      
+      .disclosure-notice h4 {
+        color: var(--accent-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .disclosure-notice i {
+        font-size: 1.5rem;
+      }
+      
+      .disclosure-notice p {
+        color: var(--text-secondary);
+        margin-bottom: 0;
+      }
+      
+      .contact-box {
+        background-color: var(--bg-tertiary);
+        border-radius: 8px;
+        padding: 2rem;
+        margin: 2rem 0;
+        text-align: center;
+      }
+      
+      .contact-box h3 {
+        color: var(--accent-primary);
+        margin-bottom: 1rem;
+      }
+      
+      .contact-box p {
+        margin-bottom: 1.5rem;
+      }
+      
+      .contact-box .email {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        background-color: rgba(0, 229, 255, 0.1);
+        border: 1px solid var(--accent-primary);
+        border-radius: 4px;
+        color: var(--accent-primary);
+        font-family: monospace;
+        font-size: 1.1rem;
+      }
+      
+      .timeline {
+        margin: 2rem 0;
+        padding-left: 2rem;
+        border-left: 2px solid var(--border-color);
+      }
+      
+      .timeline-item {
+        position: relative;
+        margin-bottom: 2rem;
+      }
+      
+      .timeline-item:last-child {
+        margin-bottom: 0;
+      }
+      
+      .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -2.4rem;
+        top: 0.5rem;
+        width: 12px;
+        height: 12px;
+        background-color: var(--accent-primary);
+        border-radius: 50%;
+      }
+      
+      .timeline-item h4 {
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+      
+      .timeline-item p {
+        color: var(--text-secondary);
+        margin-bottom: 0;
+      }
+      
+      .disclosure-footer {
+        text-align: center;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+      }
+      
+      .disclosure-footer p {
+        color: var(--text-tertiary);
+        font-size: 0.9rem;
+      }
+      
+      .disclosure-footer a {
+        color: var(--accent-primary);
+      }
+      
+      @media (max-width: 768px) {
+        .disclosure-container {
+          padding: 2rem 1rem;
+        }
+        
+        .disclosure-header h1 {
+          font-size: 2rem;
+        }
+        
+        .disclosure-content {
+          padding: 1.5rem;
+        }
+        
+        .disclosure-section h2 {
+          font-size: 1.5rem;
+        }
+        
+        .scope-table {
+          display: block;
+          overflow-x: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header x-data="{ mobileMenuOpen: false }">
+      <div class="logo-container">
+        <img src="source/logo_light.png" alt="Logo Art One" class="logo-image" />
+        <div class="logo">
+          <span class="logo-text">ART<span class="accent">ONE</span></span>
+        </div>
+      </div>
+      <button class="mobile-menu-button" @click="mobileMenuOpen = !mobileMenuOpen">
+        <i class="bx bx-menu"></i>
+      </button>
+      <nav :class="{'active': mobileMenuOpen}">
+        <a href="/"><i class="bx bx-home"></i> Inicio</a>
+        <a href="/documentation.html"><i class="bx bx-book-open"></i> Documentación</a>
+        <a href="/tools.html"><i class="bx bx-wrench"></i> Herramientas</a>
+        <a href="/news.html"><i class="bx bx-news"></i> Noticias</a>
+        <a href="/community.html"><i class="bx bx-group"></i> Comunidad</a>
+        <a href="/contact.html"><i class="bx bx-envelope"></i> Contacto</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="/login.html" class="login-btn">Iniciar Sesión</a>
+        <a href="/register.html" class="register-btn">Registrarse</a>
+      </div>
+    </header>
+
+    <main class="disclosure-container">
+      <div class="disclosure-header">
+        <h1>Divulgación <span class="accent">Responsable</span></h1>
+        <p>Agradecemos a la comunidad de seguridad su ayuda para mantener Art One y nuestros usuarios seguros. Si has encontrado una vulnerabilidad, te invitamos a reportarla siguiendo estas pautas.</p>
+      </div>
+      
+      <div class="disclosure-content">
+        <div class="disclosure-section">
+          <h2>1. Alcance del programa</h2>
+          <p>Nuestro programa de divulgación responsable cubre los siguientes sistemas y aplicaciones:</p>
+          
+          <table class="scope-table">
+            <thead>
+              <tr>
+                <th>Sistemas incluidos</th>
+                <th>Dominios</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Plataforma principal</td>
+                <td>*.artone.com</td>
+              </tr>
+              <tr>
+                <td>API pública</td>
+                <td>api.artone.com</td>
+              </tr>
+              <tr>
+                <td>Aplicación web</td>
+                <td>app.artone.com</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <div class="disclosure-notice">
+            <h4><i class="bx bx-info-circle"></i> Importante</h4>
+            <p>Las pruebas deben realizarse únicamente en entornos de desarrollo o cuentas de prueba. No se permite la explotación de vulnerabilidades en cuentas de usuarios reales.</p>
+          </div>
+        </div>
+        
+        <div class="disclosure-section">
+          <h2>2. Tipos de vulnerabilidades</h2>
+          <p>Estamos especialmente interesados en los siguientes tipos de vulnerabilidades:</p>
+          <ul>
+            <li>Inyección SQL y NoSQL</li>
+            <li>Cross-Site Scripting (XSS)</li>
+            <li>Cross-Site Request Forgery (CSRF)</li>
+            <li>Vulnerabilidades de autenticación y autorización</li>
+            <li>Exposición de información sensible</li>
+            <li>Vulnerabilidades de configuración</li>
+            <li>Problemas de lógica de negocio</li>
+          </ul>
+        </div>
+        
+        <div class="disclosure-section">
+          <h2>3. Proceso de reporte</h2>
+          <p>Para reportar una vulnerabilidad, sigue estos pasos:</p>
+          
+          <div class="timeline">
+            <div class="timeline-item">
+              <h4>1. Envío inicial</h4>
+              <p>Envía un reporte detallado a nuestro equipo de seguridad incluyendo pasos de reproducción.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <h4>2. Confirmación</h4>
+              <p>Recibirás una confirmación dentro de las 24 horas siguientes.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <h4>3. Evaluación</h4>
+              <p>Nuestro equipo evaluará el reporte y determinará su severidad.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <h4>4. Resolución</h4>
+              <p>Trabajaremos en la solución y te mantendremos informado del progreso.</p>
+            </div>
+          </div>
+          
+          <div class="contact-box">
+            <h3>Contacto de seguridad</h3>
+            <p>Envía tu reporte a nuestro equipo de seguridad:</p>
+            <span class="email">security@artone.com</span>
+          </div>
+        </div>
+        
+        <div class="disclosure-section">
+          <h2>4. Reglas de participación</h2>
+          <p>Al participar en nuestro programa, aceptas:</p>
+          <ul>
+            <li>No realizar pruebas que puedan afectar la disponibilidad del servicio</li>
+            <li>No acceder, modificar o eliminar datos de otros usuarios</li>
+            <li>No compartir información sobre vulnerabilidades hasta que sean corregidas</li>
+            <li>Proporcionar tiempo suficiente para resolver las vulnerabilidades antes de cualquier divulgación</li>
+          </ul>
+        </div>
+        
+        <div class="disclosure-section">
+          <h2>5. Reconocimiento</h2>
+          <p>Valoramos las contribuciones de la comunidad de seguridad. Los investigadores que reporten vulnerabilidades válidas recibirán:</p>
+          <ul>
+            <li>Reconocimiento en nuestro Hall of Fame</li>
+            <li>Certificado de agradecimiento</li>
+            <li>Posible recompensa según la severidad de la vulnerabilidad</li>
+          </ul>
+        </div>
+        
+        <div class="disclosure-footer">
+          <p>Última actualización: Mayo 2025</p>
+          <p>Para consultas sobre el programa, contacta con nosotros en <a href="mailto:security@artone.com">security@artone.com</a></p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <span class="logo-text">ART<span class="accent">ONE</span></span>
+            <span class="logo-subtitle">C&C Platform</span>
+          </div>
+          <p>Plataforma avanzada de Command & Control para profesionales de la ciberseguridad y pentesting.</p>
+          <div class="social-icons">
+            <a href="#"><i class="bx bxl-github"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-linkedin"></i></a>
+            <a href="#"><i class="bx bxl-discord-alt"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Enlaces rápidos</h3>
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/documentation.html">Documentación</a></li>
+            <li><a href="/tools.html">Herramientas</a></li>
+            <li><a href="/news.html">Noticias</a></li>
+            <li><a href="/community.html">Comunidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Recursos</h3>
+          <ul>
+            <li><a href="/tutorials.html">Tutoriales</a></li>
+            <li><a href="/api-docs.html">API</a></li>
+            <li><a href="/changelog.html">Changelog</a></li>
+            <li><a href="/roadmap.html">Roadmap</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="/terms.html">Términos de uso</a></li>
+            <li><a href="/privacy.html">Política de privacidad</a></li>
+            <li><a href="/license.html">Licencia</a></li>
+            <li><a href="/responsible-disclosure.html">Divulgación responsable</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Art One. Todos los derechos reservados.</p>
+        <p class="disclaimer">Art One debe utilizarse exclusivamente en entornos autorizados. No nos hacemos responsables del uso indebido de esta plataforma.</p>
+      </div>
+    </footer>
+  </body>
+</html>

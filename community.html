@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Comunidad | Art One - Plataforma C&C de Pentesting</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Únete a la comunidad de Art One - Comparte conocimientos y experiencias con otros profesionales de la ciberseguridad." />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script defer src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <script type="module" src="script.js"></script>
+    <style>
+      .community-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+      
+      .community-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      
+      .community-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .community-header p {
+        color: var(--text-secondary);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .community-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+      
+      .community-card {
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+        text-align: center;
+        transition: all var(--transition-speed);
+      }
+      
+      .community-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--accent-primary);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+      
+      .community-card i {
+        font-size: 3rem;
+        color: var(--accent-primary);
+        margin-bottom: 1.5rem;
+      }
+      
+      .community-card h3 {
+        margin-bottom: 1rem;
+      }
+      
+      .community-card p {
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+      }
+      
+      .community-card a {
+        color: var(--accent-primary);
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .community-card a i {
+        font-size: 1.2rem;
+        margin: 0;
+        transition: transform var(--transition-speed);
+      }
+      
+      .community-card a:hover i {
+        transform: translateX(5px);
+      }
+      
+      .forum-section {
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        margin-bottom: 4rem;
+        overflow: hidden;
+      }
+      
+      .forum-header {
+        padding: 2rem;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .forum-title {
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .forum-title i {
+        color: var(--accent-primary);
+      }
+      
+      .new-topic-btn {
+        padding: 0.75rem 1.5rem;
+        background-color: var(--accent-primary);
+        color: var(--bg-primary);
+        border-radius: 4px;
+        font-weight: 500;
+        transition: all var(--transition-speed);
+      }
+      
+      .new-topic-btn:hover {
+        background-color: var(--accent-secondary);
+        transform: translateY(-2px);
+      }
+      
+      .forum-topics {
+        padding: 2rem;
+      }
+      
+      .topic-item {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+        transition: all var(--transition-speed);
+      }
+      
+      .topic-item:last-child {
+        border-bottom: none;
+      }
+      
+      .topic-item:hover {
+        background-color: var(--bg-tertiary);
+      }
+      
+      .topic-icon {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(0, 229, 255, 0.1);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--accent-primary);
+      }
+      
+      .topic-content {
+        flex: 1;
+      }
+      
+      .topic-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .topic-meta {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.9rem;
+        color: var(--text-tertiary);
+      }
+      
+      .topic-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      
+      .topic-stats {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+      }
+      
+      .stat-item {
+        text-align: center;
+      }
+      
+      .stat-value {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--accent-primary);
+      }
+      
+      .stat-label {
+        font-size: 0.8rem;
+        color: var(--text-tertiary);
+      }
+      
+      @media (max-width: 768px) {
+        .community-container {
+          padding: 2rem 1rem;
+        }
+        
+        .community-header h1 {
+          font-size: 2rem;
+        }
+        
+        .topic-item {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+        
+        .topic-stats {
+          width: 100%;
+          justify-content: space-around;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header x-data="{ mobileMenuOpen: false }">
+      <div class="logo-container">
+        <img src="source/logo_light.png" alt="Logo Art One" class="logo-image" />
+        <div class="logo">
+          <span class="logo-text">ART<span class="accent">ONE</span></span>
+        </div>
+      </div>
+      <button class="mobile-menu-button" @click="mobileMenuOpen = !mobileMenuOpen">
+        <i class="bx bx-menu"></i>
+      </button>
+      <nav :class="{'active': mobileMenuOpen}">
+        <a href="/"><i class="bx bx-home"></i> Inicio</a>
+        <a href="/documentation.html"><i class="bx bx-book-open"></i> Documentación</a>
+        <a href="/tools.html"><i class="bx bx-wrench"></i> Herramientas</a>
+        <a href="/news.html"><i class="bx bx-news"></i> Noticias</a>
+        <a href="/community.html" aria-current="page"><i class="bx bx-group"></i> Comunidad</a>
+        <a href="/contact.html"><i class="bx bx-envelope"></i> Contacto</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="/login.html" class="login-btn">Iniciar Sesión</a>
+        <a href="/register.html" class="register-btn">Registrarse</a>
+      </div>
+    </header>
+
+    <main class="community-container">
+      <div class="community-header">
+        <h1>Comunidad <span class="accent">Art One</span></h1>
+        <p>Únete a una comunidad activa de profesionales de la ciberseguridad. Comparte conocimientos, experiencias y mejores prácticas con expertos de todo el mundo.</p>
+      </div>
+      
+      <div class="community-grid">
+        <div class="community-card">
+          <i class="bx bx-conversation"></i>
+          <h3>Foros de Discusión</h3>
+          <p>Participa en conversaciones técnicas sobre pentesting, vulnerabilidades y seguridad informática.</p>
+          <a href="/forums">Explorar foros <i class="bx bx-right-arrow-alt"></i></a>
+        </div>
+        
+        <div class="community-card">
+          <i class="bx bx-code-block"></i>
+          <h3>Recursos Compartidos</h3>
+          <p>Accede a scripts, herramientas y recursos compartidos por la comunidad.</p>
+          <a href="/resources">Ver recursos <i class="bx bx-right-arrow-alt"></i></a>
+        </div>
+        
+        <div class="community-card">
+          <i class="bx bx-bulb"></i>
+          <h3>Proyectos Colaborativos</h3>
+          <p>Únete a proyectos de código abierto y contribuye al desarrollo de nuevas herramientas.</p>
+          <a href="/projects">Ver proyectos <i class="bx bx-right-arrow-alt"></i></a>
+        </div>
+      </div>
+      
+      <div class="forum-section">
+        <div class="forum-header">
+          <h2 class="forum-title"><i class="bx bx-chat"></i> Últimas Discusiones</h2>
+          <a href="/new-topic" class="new-topic-btn">Nuevo tema</a>
+        </div>
+        
+        <div class="forum-topics">
+          <div class="topic-item">
+            <div class="topic-icon">
+              <i class="bx bx-bug"></i>
+            </div>
+            <div class="topic-content">
+              <h3 class="topic-title">Nueva vulnerabilidad en sistemas Linux</h3>
+              <div class="topic-meta">
+                <span><i class="bx bx-user"></i> Carlos Mendoza</span>
+                <span><i class="bx bx-time"></i> Hace 2 horas</span>
+              </div>
+            </div>
+            <div class="topic-stats">
+              <div class="stat-item">
+                <div class="stat-value">24</div>
+                <div class="stat-label">Respuestas</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">156</div>
+                <div class="stat-label">Vistas</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="topic-item">
+            <div class="topic-icon">
+              <i class="bx bx-code-alt"></i>
+            </div>
+            <div class="topic-content">
+              <h3 class="topic-title">Script para automatización de reconocimiento</h3>
+              <div class="topic-meta">
+                <span><i class="bx bx-user"></i> Elena Rodríguez</span>
+                <span><i class="bx bx-time"></i> Hace 5 horas</span>
+              </div>
+            </div>
+            <div class="topic-stats">
+              <div class="stat-item">
+                <div class="stat-value">18</div>
+                <div class="stat-label">Respuestas</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">92</div>
+                <div class="stat-label">Vistas</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="topic-item">
+            <div class="topic-icon">
+              <i class="bx bx-shield-quarter"></i>
+            </div>
+            <div class="topic-content">
+              <h3 class="topic-title">Mejores prácticas para evasión de IDS</h3>
+              <div class="topic-meta">
+                <span><i class="bx bx-user"></i> David López</span>
+                <span><i class="bx bx-time"></i> Hace 8 horas</span>
+              </div>
+            </div>
+            <div class="topic-stats">
+              <div class="stat-item">
+                <div class="stat-value">32</div>
+                <div class="stat-label">Respuestas</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">245</div>
+                <div class="stat-label">Vistas</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <span class="logo-text">ART<span class="accent">ONE</span></span>
+            <span class="logo-subtitle">C&C Platform</span>
+          </div>
+          <p>Plataforma avanzada de Command & Control para profesionales de la ciberseguridad y pentesting.</p>
+          <div class="social-icons">
+            <a href="#"><i class="bx bxl-github"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-linkedin"></i></a>
+            <a href="#"><i class="bx bxl-discord-alt"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Enlaces rápidos</h3>
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/documentation.html">Documentación</a></li>
+            <li><a href="/tools.html">Herramientas</a></li>
+            <li><a href="/news.html">Noticias</a></li>
+            <li><a href="/community.html">Comunidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Recursos</h3>
+          <ul>
+            <li><a href="/tutorials.html">Tutoriales</a></li>
+            <li><a href="/api-docs.html">API</a></li>
+            <li><a href="/changelog.html">Changelog</a></li>
+            <li><a href="/roadmap.html">Roadmap</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="/terms.html">Términos de uso</a></li>
+            <li><a href="/privacy.html">Política de privacidad</a></li>
+            <li><a href="/license.html">Licencia</a></li>
+            <li><a href="/responsible-disclosure.html">Divulgación responsable</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Art One. Todos los derechos reservados.</p>
+        <p class="disclaimer">Art One debe utilizarse exclusivamente en entornos autorizados. No nos hacemos responsables del uso indebido de esta plataforma.</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Preguntas Frecuentes | Art One - Plataforma C&C de Pentesting</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Preguntas frecuentes sobre Art One - Plataforma avanzada de Command & Control para pentesting y ciberseguridad."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <script defer src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <script type="module" src="script.js"></script>
+    <style>
+      .faq-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+      .faq-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      .faq-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      .faq-header p {
+        color: var(--text-secondary);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .faq-search {
+        max-width: 600px;
+        margin: 0 auto 3rem;
+        position: relative;
+      }
+      .faq-search input {
+        width: 100%;
+        padding: 1rem 1rem 1rem 3rem;
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        color: var(--text-primary);
+        font-size: 1rem;
+      }
+      .faq-search i {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-tertiary);
+        font-size: 1.2rem;
+      }
+      .faq-categories {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+      }
+      .faq-category {
+        padding: 0.5rem 1.5rem;
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: all var(--transition-speed);
+      }
+      .faq-category:hover,
+      .faq-category.active {
+        background-color: rgba(0, 229, 255, 0.1);
+        color: var(--accent-primary);
+        border-color: var(--accent-primary);
+      }
+      .faq-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+      .faq-section {
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        overflow: hidden;
+      }
+      .faq-section h2 {
+        padding: 1.5rem;
+        background-color: var(--bg-tertiary);
+        border-bottom: 1px solid var(--border-color);
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--accent-primary);
+      }
+      .faq-list {
+        padding: 1.5rem;
+      }
+      .faq-item {
+        margin-bottom: 2rem;
+      }
+      .faq-item:last-child {
+        margin-bottom: 0;
+      }
+      .faq-question {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+        cursor: pointer;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      .faq-question i {
+        color: var(--accent-primary);
+        font-size: 1.2rem;
+        transition: transform var(--transition-speed);
+      }
+      .faq-answer {
+        color: var(--text-secondary);
+        padding-left: 1.7rem;
+        display: none;
+      }
+      .faq-item.active .faq-question i {
+        transform: rotate(180deg);
+      }
+      .faq-item.active .faq-answer {
+        display: block;
+      }
+      .contact-support {
+        text-align: center;
+        margin-top: 4rem;
+        padding: 2rem;
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+      }
+      .contact-support h3 {
+        color: var(--accent-primary);
+        margin-bottom: 1rem;
+      }
+      .contact-support p {
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+      }
+      .support-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+      }
+      .support-btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        font-weight: 500;
+        transition: all var(--transition-speed);
+      }
+      .support-btn.primary {
+        background-color: var(--accent-primary);
+        color: var(--bg-primary);
+      }
+      .support-btn.primary:hover {
+        background-color: var(--accent-secondary);
+        transform: translateY(-2px);
+      }
+      .support-btn.secondary {
+        border: 1px solid var(--accent-primary);
+        color: var(--accent-primary);
+      }
+      .support-btn.secondary:hover {
+        background-color: rgba(0, 229, 255, 0.1);
+        transform: translateY(-2px);
+      }
+      @media (max-width: 768px) {
+        .faq-container {
+          padding: 2rem 1rem;
+        }
+        .faq-header h1 {
+          font-size: 2rem;
+        }
+        .support-buttons {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header x-data="{ mobileMenuOpen: false }">
+      <div class="logo-container">
+        <div class="logo">
+          <span class="logo-text">ART<span class="accent">ONE</span></span>
+          <span class="logo-subtitle">C&C Platform</span>
+        </div>
+      </div>
+      <button class="mobile-menu-button" @click="mobileMenuOpen = !mobileMenuOpen">
+        <i class="bx bx-menu"></i>
+      </button>
+      <nav :class="{'active': mobileMenuOpen}">
+        <a href="/"><i class="bx bx-home"></i> Inicio</a>
+        <a href="/documentation.html"><i class="bx bx-book-open"></i> Documentación</a>
+        <a href="/tools.html"><i class="bx bx-wrench"></i> Herramientas</a>
+        <a href="/news.html"><i class="bx bx-news"></i> Noticias</a>
+        <a href="/community.html"><i class="bx bx-group"></i> Comunidad</a>
+        <a href="/contact.html"><i class="bx bx-envelope"></i> Contacto</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="/login.html" class="login-btn">Iniciar Sesión</a>
+        <a href="/register.html" class="register-btn">Registrarse</a>
+      </div>
+    </header>
+
+    <main class="faq-container">
+      <div class="faq-header">
+        <h1>Preguntas <span class="accent">Frecuentes</span></h1>
+        <p>Encuentra respuestas a las preguntas más comunes sobre Art One. Si no encuentras lo que buscas, no dudes en contactar con nuestro equipo de soporte.</p>
+      </div>
+
+      <div class="faq-search">
+        <i class="bx bx-search"></i>
+        <input id="faq-search-input" type="text" placeholder="Buscar preguntas frecuentes...">
+      </div>
+
+      <div class="faq-categories">
+        <div class="faq-category active">Todas</div>
+        <div class="faq-category">General</div>
+        <div class="faq-category">Licencias</div>
+        <div class="faq-category">Técnico</div>
+        <div class="faq-category">Seguridad</div>
+        <div class="faq-category">Soporte</div>
+      </div>
+
+      <div class="faq-content">
+        <!-- Sección General -->
+        <div class="faq-section">
+          <h2><i class="bx bx-info-circle"></i> General</h2>
+          <div class="faq-list">
+            <div class="faq-item active">
+              <div class="faq-question">
+                <i class="bx bx-chevron-down"></i>
+                <span>¿Qué es Art One?</span>
+              </div>
+              <div class="faq-answer">
+                Art One es una plataforma avanzada de Command &amp; Control diseñada específicamente para profesionales de ciberseguridad y pentesting. Proporciona herramientas integradas para pruebas de penetración, análisis de vulnerabilidades y gestión de operaciones de seguridad.
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">
+                <i class="bx bx-chevron-down"></i>
+                <span>¿Quién puede utilizar Art One?</span>
+              </div>
+              <div class="faq-answer">
+                Art One está diseñado para profesionales de ciberseguridad, pentesters, auditores de seguridad y organizaciones que realizan evaluaciones de seguridad autorizadas. Se requiere verificación profesional para acceder a ciertas funcionalidades.
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">
+                <i class="bx bx-chevron-down"></i>
+                <span>¿Qué sistemas operativos son compatibles?</span>
+              </div>
+              <div class="faq-answer">
+                Art One es compatible con la mayoría de sistemas operativos modernos, incluyendo Linux, Windows y macOS. La plataforma web funciona en cualquier navegador actualizado.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección Licencias y Precios -->
+        <div class="faq-section">
+          <h2><i class="bx bx-purchase-tag"></i> Licencias y Precios</h2>
+          <div class="faq-list">
+            <div class="faq-item">
+              <div class="faq-question">
+                <i class="bx bx-chevron-down"></i>
+                <span>¿Qué tipos de licencias están disponibles?</span>
+              </div>
+              <div class="faq-answer">
+                Ofrecemos tres tipos de licencias: Community Edition (gratuita), Professional (uso individual) y Enterprise (uso organizacional). Cada una incluye diferentes niveles de funcionalidad y soporte.
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">
+                <i class="bx bx-chevron-down"></i>
+                <span>¿Cómo funciona la renovación de licencias?</span>
+              </div>
+              <div class="faq-answer">
+                Las licencias Professional y Enterprise se renuevan anualmente. Recibirás notificaciones 30 días antes del vencimiento y puedes configurar la renovación automática para evitar interrupciones.
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">
+                <i class="bx bx-chevron-down"></i>
+                <span>¿Ofrecen descuentos para educación?</span>
+              </div>
+              <div class="faq-answer">
+                Sí, ofrecemos descuentos especiales para instituciones educativas y estudiantes verificados. Contacta con nuestro equipo de ventas para más información.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección Técnico -->
+        <div class="faq-section">
+          <h2><i class="bx bx-code-alt"></i> Técnico</h2>
+          <div class="faq-list">
+            <div class="faq-item">
+              <div class="faq-question">
+                <i class="bx bx-chevron-down"></i>
+                <span>¿Cómo se instalan los agentes?</span>
+              </div>
+              <div class="faq-answer">
+                Los agentes se pueden instalar mediante nuestro instalador automatizado o manualmente siguiendo la documentación. Soportamos despliegue mediante gestores de configuración como Ansible.
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">
+                <i class="bx bx-chevron-down"></i>
+                <span>¿Qué protocolos de comunicación se utilizan?</span>
+              </div>
+              <div class="faq-answer">
+                Art One utiliza protocolos seguros y cifrados para todas las comunicaciones. Soportamos HTTP/S, DNS, y protocolos personalizados con capacidades de evasión.
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">
+                <i class="bx bx-chevron-down"></i>
+                <span>¿Existe una API disponible?</span>
+              </div>
+              <div class="faq-answer">
+                Sí, proporcionamos una API REST completa para automatización e integración. La documentación detallada está disponible en nuestra sección de API.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección Seguridad -->
+        <div class="faq-section">
+          <h2><i class="bx bx-shield-quarter"></i> Seguridad</h2>
+          <div class="faq-list">
+            <div class="faq-item">
+              <div class="faq-question">
+                <i class="bx bx-chevron-down"></i>
+                <span>¿Cómo se protegen los datos?</span>
+              </div>
+              <div class="faq-answer">
+                Todos los datos se cifran en tránsito y en reposo utilizando algoritmos estándar de la industria. Implementamos múltiples capas de seguridad y realizamos auditorías regulares.
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">
+                <i class="bx bx-chevron-down"></i>
+                <span>¿Qué medidas de seguridad implementan?</span>
+              </div>
+              <div class="faq-answer">
+                Implementamos autenticación multifactor, control de acceso basado en roles, registro de auditoría y monitorización continua de seguridad.
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">
+                <i class="bx bx-chevron-down"></i>
+                <span>¿Cómo reporto una vulnerabilidad?</span>
+              </div>
+              <div class="faq-answer">
+                Tenemos un programa de divulgación responsable de vulnerabilidades. Puedes reportar problemas de seguridad a través de nuestro proceso documentado en la sección de divulgación responsable.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-support">
+        <h3>¿No encuentras lo que buscas?</h3>
+        <p>Nuestro equipo de soporte está disponible para ayudarte con cualquier pregunta adicional.</p>
+        <div class="support-buttons">
+          <a href="/contact.html" class="support-btn primary">Contactar soporte</a>
+          <a href="/documentation.html" class="support-btn secondary">Ver documentación</a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <span class="logo-text">ART<span class="accent">ONE</span></span>
+            <span class="logo-subtitle">C&C Platform</span>
+          </div>
+          <p>Plataforma avanzada de Command &amp; Control para profesionales de la ciberseguridad y pentesting.</p>
+          <div class="social-icons">
+            <a href="#"><i class="bx bxl-github"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-linkedin"></i></a>
+            <a href="#"><i class="bx bxl-discord-alt"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Enlaces rápidos</h3>
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/documentation.html">Documentación</a></li>
+            <li><a href="/tools.html">Herramientas</a></li>
+            <li><a href="/news.html">Noticias</a></li>
+            <li><a href="/community.html">Comunidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Recursos</h3>
+          <ul>
+            <li><a href="/tutorials.html">Tutoriales</a></li>
+            <li><a href="/api-docs.html">API</a></li>
+            <li><a href="/changelog.html">Changelog</a></li>
+            <li><a href="/roadmap.html">Roadmap</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="/terms.html">Términos de uso</a></li>
+            <li><a href="/privacy.html">Política de privacidad</a></li>
+            <li><a href="/license.html">Licencia</a></li>
+            <li><a href="/responsible-disclosure.html">Divulgación responsable</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Art One. Todos los derechos reservados.</p>
+        <p class="disclaimer">Art One debe utilizarse exclusivamente en entornos autorizados. No nos hacemos responsables del uso indebido de esta plataforma.</p>
+      </div>
+    </footer>
+
+    <!-- Script específico para FAQ -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Mostrar/ocultar respuesta al hacer clic en la pregunta
+        document.querySelectorAll('.faq-question').forEach(q => {
+          q.addEventListener('click', function() {
+            this.parentElement.classList.toggle('active');
+          });
+        });
+
+        // Filtrado por categoría
+        const categoryButtons = document.querySelectorAll('.faq-category');
+        categoryButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            // Quitar la clase .active de todos los botones de categoría
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            // Añadir la clase .active al botón actual
+            this.classList.add('active');
+
+            const selectedCategory = this.textContent.trim().toLowerCase();
+            // Mostrar/ocultar secciones según la categoría
+            document.querySelectorAll('.faq-section').forEach(section => {
+              const headerText = section.querySelector('h2').textContent.trim().toLowerCase();
+              if (selectedCategory === 'todas' || headerText.includes(selectedCategory)) {
+                section.style.display = 'block';
+              } else {
+                section.style.display = 'none';
+              }
+            });
+          });
+        });
+
+        // Búsqueda y resaltado en FAQ
+        const faqSearchInput = document.getElementById('faq-search-input');
+        faqSearchInput.addEventListener('input', function() {
+          const term = this.value.trim().toLowerCase();
+
+          // 1. Filtrar cada pregunta
+          document.querySelectorAll('.faq-item').forEach(item => {
+            const questionElem = item.querySelector('.faq-question span');
+            const answerElem = item.querySelector('.faq-answer');
+
+            // Guardar contenido original si aún no existe
+            if (!questionElem.hasAttribute('data-original')) {
+              questionElem.setAttribute('data-original', questionElem.textContent);
+            }
+            if (!answerElem.hasAttribute('data-original')) {
+              answerElem.setAttribute('data-original', answerElem.textContent);
+            }
+
+            const originalQuestion = questionElem.getAttribute('data-original');
+            const originalAnswer = answerElem.getAttribute('data-original');
+            const regex = new RegExp(`(${term})`, 'gi');
+
+            // Resaltar coincidencias si existe término
+            if (term === '') {
+              questionElem.innerHTML = originalQuestion;
+              answerElem.innerHTML = originalAnswer;
+            } else {
+              questionElem.innerHTML = originalQuestion.replace(regex, '<mark>$1</mark>');
+              answerElem.innerHTML = originalAnswer.replace(regex, '<mark>$1</mark>');
+            }
+
+            // Mostrar u ocultar .faq-item si no coincide
+            if (
+              term === '' ||
+              originalQuestion.toLowerCase().includes(term) ||
+              originalAnswer.toLowerCase().includes(term)
+            ) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+
+          // 2. Al terminar, revisar cada .faq-section:
+          //    si todas las .faq-item están ocultas, se oculta la sección entera.
+          document.querySelectorAll('.faq-section').forEach(section => {
+            const items = section.querySelectorAll('.faq-item');
+            let anyVisible = false;
+            items.forEach(item => {
+              if (item.style.display !== 'none') {
+                anyVisible = true;
+              }
+            });
+            // Si no hay ningún .faq-item visible, se oculta la sección
+            section.style.display = anyVisible ? 'block' : 'none';
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

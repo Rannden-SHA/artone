@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>A.R.T.-One | Plataforma C&C de Pentesting y Ciberseguridad</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Art One - Plataforma avanzada de Command & Control para pentesting y ciberseguridad. Herramientas, documentación y recursos para profesionales." />
+
+    <!-- Open Graph / Social Meta Tags -->
+    <meta property="og:title" content="A.R.T.-One | Plataforma C&C de Pentesting y Ciberseguridad">
+    <meta property="og:description" content="Art One - Plataforma avanzada de Command & Control para pentesting y ciberseguridad. Herramientas, documentación y recursos para profesionales.">
+    <meta property="og:image" content="https://art-one.site/source/logo.png">
+    <meta property="og:url" content="https://www.art-one.site">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="A.R.T.-One | Plataforma C&C de Pentesting y Ciberseguridad">
+    <meta name="twitter:description" content="Art One - Plataforma avanzada de Command & Control para pentesting y ciberseguridad. Herramientas, documentación y recursos para profesionales.">
+    <meta name="twitter:image" content="https://art-one.site/source/logo.png">
+
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script defer src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <script type="module" src="script.js"></script>
+  </head>
+  <body>
+    <header x-data="{ mobileMenuOpen: false }">
+      <div class="logo-container">
+        <img src="source/logo_light.png" alt="Logo Art One" class="logo-image" />
+        <div class="logo">
+          <span class="logo-text">ART<span class="accent">ONE</span></span>
+        </div>
+      </div>
+      <button class="mobile-menu-button" @click="mobileMenuOpen = !mobileMenuOpen">
+        <i class="bx bx-menu"></i>
+      </button>
+      <nav :class="{'active': mobileMenuOpen}">
+        <a href="/" aria-current="page"><i class="bx bx-home"></i> Inicio</a>
+        <a href="/documentation.html"><i class="bx bx-book-open"></i> Documentación</a>
+        <a href="/tools.html"><i class="bx bx-wrench"></i> Herramientas</a>
+        <a href="/news.html"><i class="bx bx-news"></i> Noticias</a>
+        <a href="/community.html"><i class="bx bx-group"></i> Comunidad</a>
+        <a href="/contact.html"><i class="bx bx-envelope"></i> Contacto</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="/login.html" class="login-btn">Iniciar Sesión</a>
+        <a href="/register.html" class="register-btn">Registrarse</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Command & Control <span class="accent">Avanzado</span></h1>
+        <h2>Plataforma integral para pentesting y ciberseguridad</h2>
+        <p>Art One proporciona un entorno centralizado para la gestión de pruebas de penetración, análisis de vulnerabilidades y monitorización de sistemas en tiempo real.</p>
+        <div class="cta-buttons">
+          <a href="/register.html" class="primary-btn">Comenzar ahora</a>
+          <a href="/documentation.html" class="secondary-btn">Documentación</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="cyber-grid"></div>
+        <div class="terminal">
+          <div class="terminal-header">
+            <span class="terminal-title">art_one@secure:~</span>
+            <div class="terminal-buttons">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div class="terminal-body" id="terminal-text"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <h2>Características <span class="accent">Principales</span></h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <i class="bx bx-shield-quarter"></i>
+          <h3>Pentesting Avanzado</h3>
+          <p>Herramientas integradas para pruebas de penetración en redes, aplicaciones web y sistemas operativos.</p>
+        </div>
+        <div class="feature-card">
+          <i class="bx bx-search-alt"></i>
+          <h3>Análisis de Vulnerabilidades</h3>
+          <p>Escaneo y detección automatizada de vulnerabilidades con informes detallados y recomendaciones.</p>
+        </div>
+        <div class="feature-card">
+          <i class="bx bx-server"></i>
+          <h3>Gestión Centralizada</h3>
+          <p>Control unificado de agentes remotos y herramientas desde un único panel de administración.</p>
+        </div>
+        <div class="feature-card">
+          <i class="bx bx-line-chart"></i>
+          <h3>Monitorización en Tiempo Real</h3>
+          <p>Visualización de datos y alertas instantáneas sobre actividades sospechosas en la red.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard-preview">
+      <h2>Panel de <span class="accent">Control</span></h2>
+      <div class="dashboard-container">
+        <div class="dashboard-visual">
+          <div class="dashboard-item">
+            <h4>Estado de la Red</h4>
+            <div class="network-status">
+              <div class="status-bar">
+                <div class="status-fill" style="width: 78%"></div>
+              </div>
+              <span>78% Seguro</span>
+            </div>
+          </div>
+          <div class="dashboard-item">
+            <h4>Vulnerabilidades Detectadas</h4>
+            <div class="vuln-chart">
+              <div class="chart-bar high"></div>
+              <div class="chart-bar medium"></div>
+              <div class="chart-bar low"></div>
+            </div>
+            <div class="chart-legend">
+              <span><span class="dot high"></span> Críticas: 3</span>
+              <span><span class="dot medium"></span> Medias: 7</span>
+              <span><span class="dot low"></span> Bajas: 12</span>
+            </div>
+          </div>
+          <div class="dashboard-item">
+            <h4>Agentes Activos</h4>
+            <div class="agents-grid">
+              <div class="agent active"></div>
+              <div class="agent active"></div>
+              <div class="agent"></div>
+              <div class="agent active"></div>
+              <div class="agent active"></div>
+              <div class="agent"></div>
+              <div class="agent active"></div>
+              <div class="agent"></div>
+            </div>
+            <span>5/8 Conectados</span>
+          </div>
+        </div>
+        <div class="dashboard-info">
+          <h3>Gestión Integral de Seguridad</h3>
+          <p>Nuestro panel de control te permite visualizar el estado de seguridad de tu infraestructura en tiempo real, gestionar agentes remotos y coordinar operaciones de pentesting desde una interfaz intuitiva y potente.</p>
+          <ul>
+            <li><i class="bx bx-check"></i> Visualización de datos en tiempo real</li>
+            <li><i class="bx bx-check"></i> Gestión de agentes y operaciones</li>
+            <li><i class="bx bx-check"></i> Informes detallados y personalizables</li>
+            <li><i class="bx bx-check"></i> Alertas y notificaciones configurables</li>
+          </ul>
+          <a href="/dashboard-demo.html" class="demo-btn">Ver demostración</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="tools-section">
+      <h2>Herramientas <span class="accent">Integradas</span></h2>
+      <div class="tools-container">
+        <div class="tool-category">
+          <h3><i class="bx bx-network-chart"></i> Reconocimiento</h3>
+          <ul>
+            <li>Network Scanner</li>
+            <li>Port Analyzer</li>
+            <li>Service Detector</li>
+            <li>OSINT Toolkit</li>
+          </ul>
+        </div>
+        <div class="tool-category">
+          <h3><i class="bx bx-code-alt"></i> Explotación</h3>
+          <ul>
+            <li>Vulnerability Exploiter</li>
+            <li>Payload Generator</li>
+            <li>Web App Tester</li>
+            <li>Brute Force Tools</li>
+          </ul>
+        </div>
+        <div class="tool-category">
+          <h3><i class="bx bx-lock-alt"></i> Post-Explotación</h3>
+          <ul>
+            <li>Privilege Escalator</li>
+            <li>Data Exfiltration</li>
+            <li>Persistence Manager</li>
+            <li>Lateral Movement</li>
+          </ul>
+        </div>
+        <div class="tool-category">
+          <h3><i class="bx bx-file"></i> Informes</h3>
+          <ul>
+            <li>Vulnerability Reporter</li>
+            <li>Evidence Collector</li>
+            <li>Risk Assessment</li>
+            <li>Compliance Checker</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tools-cta">
+        <a href="/tools.html" class="tools-btn">Explorar todas las herramientas</a>
+      </div>
+    </section>
+
+    <section class="news-section">
+      <h2>Últimas <span class="accent">Noticias</span></h2>
+      <div class="news-grid">
+        <div class="news-card">
+          <div class="news-date">15 MAY 2025</div>
+          <h3>Nueva vulnerabilidad crítica en sistemas Linux</h3>
+          <p>Se ha descubierto una vulnerabilidad de día cero que afecta a kernels Linux. Art One ya incluye herramientas para su detección y mitigación.</p>
+          <a href="/news/linux-vulnerability.html" class="read-more">Leer más <i class="bx bx-right-arrow-alt"></i></a>
+        </div>
+        <div class="news-card">
+          <div class="news-date">10 MAY 2025</div>
+          <h3>Actualización 3.5 de Art One disponible</h3>
+          <p>La nueva versión incluye mejoras en el motor de escaneo, nuevos módulos de explotación y una interfaz renovada.</p>
+          <a href="/news/update-3-5.html" class="read-more">Leer más <i class="bx bx-right-arrow-alt"></i></a>
+        </div>
+        <div class="news-card">
+          <div class="news-date">02 MAY 2025</div>
+          <h3>Webinar: Técnicas avanzadas de evasión de IDS/IPS</h3>
+          <p>Únete a nuestro webinar donde expertos en seguridad compartirán las últimas técnicas para pruebas de penetración efectivas.</p>
+          <a href="/news/webinar-ids-evasion.html" class="read-more">Leer más <i class="bx bx-right-arrow-alt"></i></a>
+        </div>
+      </div>
+      <div class="news-cta">
+        <a href="/news.html" class="news-btn">Ver todas las noticias</a>
+      </div>
+    </section>
+
+    <section class="team-section">
+      <h2>Nuestro <span class="accent">Equipo</span></h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="member-image">
+            <img src="source/adrian.png" alt="Adrian - CTO">
+          </div>
+          <h3>Adrián Gisbert</h3>
+          <p>Chief Technology Officer</p>
+          <div class="member-social">
+            <a href="https://www.linkedin.com/in/sr-gisbert/" target="_blank">
+              <i class="bx bxl-linkedin"></i>
+            </a>
+            <a href="https://github.com/Rannden-SHA" target="_blank">
+              <i class="bx bxl-github"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="team-member">
+          <div class="member-image">
+            <img src="source/ramon.png" alt="Ramón - Security Lead">
+          </div>
+          <h3>Ramón Frizat</h3>
+          <p>Security Lead</p>
+          <div class="member-social">
+            <a href="https://www.linkedin.com/in/ramonfrizat/" target="_blank">
+              <i class="bx bxl-linkedin"></i>
+            </a>
+            <a href="https://github.com/Frib1t" target="_blank">
+              <i class="bx bxl-github"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="team-member">
+          <div class="member-image">
+            <img src="source/tobias.png" alt="Tobias - Development Lead">
+          </div>
+          <h3>Tobias Kaladjian</h3>
+          <p>Development Lead</p>
+          <div class="member-social">
+            <a href="https://www.linkedin.com/in/tobiaskaladjian/" target="_blank">
+              <i class="bx bxl-linkedin"></i>
+            </a>
+            <a href="https://github.com/tobiasasa" target="_blank">
+              <i class="bx bxl-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <h2>Lo que dicen los <span class="accent">Profesionales</span></h2>
+      <div class="testimonials-container">
+        <div class="testimonial">
+          <div class="testimonial-content">
+            <p>"Art One ha revolucionado nuestra forma de realizar auditorías de seguridad. La centralización de herramientas y la generación de informes automáticos nos ha permitido reducir tiempos y aumentar la calidad."</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar"></div>
+            <div class="author-info">
+              <h4>Carlos Mendoza</h4>
+              <span>CISO, TechSecure Solutions</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-content">
+            <p>"Como consultor independiente, Art One me ha proporcionado un arsenal completo de herramientas que antes requería múltiples plataformas. La interfaz intuitiva y la documentación detallada son excepcionales."</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar"></div>
+            <div class="author-info">
+              <h4>Elena Rodríguez</h4>
+              <span>Pentester Independiente</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="cta-content">
+        <h2>Potencia tu <span class="accent">Ciberseguridad</span></h2>
+        <p>Únete a los miles de profesionales que confían en Art One para sus operaciones de pentesting y seguridad informática.</p>
+        <div class="cta-buttons">
+          <a href="/register.html" class="primary-btn">Comenzar ahora</a>
+          <a href="/contact.html" class="secondary-btn">Contactar con ventas</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <span class="logo-text">ART<span class="accent">ONE</span></span>
+            <span class="logo-subtitle">C&C Platform</span>
+          </div>
+          <p>Plataforma avanzada de Command & Control para profesionales de la ciberseguridad y pentesting.</p>
+          <div class="social-icons">
+            <a href="#"><i class="bx bxl-github"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-linkedin"></i></a>
+            <a href="#"><i class="bx bxl-discord-alt"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Enlaces rápidos</h3>
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/documentation.html">Documentación</a></li>
+            <li><a href="/tools.html">Herramientas</a></li>
+            <li><a href="/news.html">Noticias</a></li>
+            <li><a href="/community.html">Comunidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Recursos</h3>
+          <ul>
+            <li><a href="/tutorials.html">Tutoriales</a></li>
+            <li><a href="/api-docs.html">API</a></li>
+            <li><a href="/changelog.html">Changelog</a></li>
+            <li><a href="/roadmap.html">Roadmap</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="/terms.html">Términos de uso</a></li>
+            <li><a href="/privacy.html">Política de privacidad</a></li>
+            <li><a href="/license.html">Licencia</a></li>
+            <li><a href="/responsible-disclosure.html">Divulgación responsable</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Art One. Todos los derechos reservados.</p>
+        <p class="disclaimer">Art One debe utilizarse exclusivamente en entornos autorizados. No nos hacemos responsables del uso indebido de esta plataforma.</p>
+      </div>
+    </footer>
+  </body>
+</html>

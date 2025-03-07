@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Tutoriales | Art One - Plataforma C&C de Pentesting</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Tutoriales y guías de Art One - Plataforma avanzada de Command & Control para pentesting y ciberseguridad." />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script defer src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <script type="module" src="script.js"></script>
+    <style>
+      .tutorials-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+
+      .tutorials-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .tutorials-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .tutorials-header p {
+        color: var(--text-secondary);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .tutorials-filter {
+        background-color: var(--bg-secondary);
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 3rem;
+        border: 1px solid var(--border-color);
+      }
+
+      .filter-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .filter-option {
+        padding: 0.5rem 1.5rem;
+        background-color: var(--bg-tertiary);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: all var(--transition-speed);
+      }
+
+      .filter-option:hover,
+      .filter-option.active {
+        background-color: rgba(0, 229, 255, 0.1);
+        color: var(--accent-primary);
+        border-color: var(--accent-primary);
+      }
+
+      .search-tutorials {
+        position: relative;
+      }
+
+      .search-tutorials input {
+        width: 100%;
+        padding: 1rem 1rem 1rem 3rem;
+        background-color: var(--bg-tertiary);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        color: var(--text-primary);
+        font-size: 1rem;
+      }
+
+      .search-tutorials i {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-tertiary);
+        font-size: 1.2rem;
+      }
+
+      .tutorials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .tutorial-card {
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        transition: all var(--transition-speed);
+      }
+
+      .tutorial-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border-color: var(--accent-primary);
+      }
+
+      .tutorial-image {
+        width: 100%;
+        height: 200px;
+        background-color: var(--bg-tertiary);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .tutorial-level {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      .level-beginner {
+        background-color: rgba(46, 213, 115, 0.9);
+        color: var(--bg-primary);
+      }
+
+      .level-intermediate {
+        background-color: rgba(255, 165, 2, 0.9);
+        color: var(--bg-primary);
+      }
+
+      .level-advanced {
+        background-color: rgba(255, 71, 87, 0.9);
+        color: var(--bg-primary);
+      }
+
+      .tutorial-content {
+        padding: 1.5rem;
+      }
+
+      .tutorial-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .tutorial-category {
+        color: var(--accent-primary);
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      .tutorial-duration {
+        color: var(--text-tertiary);
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .tutorial-title {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        line-height: 1.4;
+      }
+
+      .tutorial-description {
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .tutorial-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .tutorial-author {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .author-avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: var(--accent-primary);
+        opacity: 0.2;
+      }
+
+      .author-name {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+
+      .start-tutorial {
+        color: var(--accent-primary);
+        font-size: 0.9rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .start-tutorial i {
+        transition: transform var(--transition-speed);
+      }
+
+      .start-tutorial:hover i {
+        transform: translateX(5px);
+      }
+
+      .learning-paths {
+        margin-bottom: 4rem;
+      }
+
+      .path-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .path-header h2 {
+        font-size: 2rem;
+        margin: 0;
+        text-align: left;
+      }
+
+      .view-all {
+        color: var(--accent-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .path-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .path-card {
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+        text-align: center;
+        transition: all var(--transition-speed);
+      }
+
+      .path-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--accent-primary);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .path-icon {
+        width: 80px;
+        height: 80px;
+        background-color: rgba(0, 229, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+      }
+
+      .path-icon i {
+        font-size: 2.5rem;
+        color: var(--accent-primary);
+      }
+
+      .path-card h3 {
+        margin-bottom: 1rem;
+      }
+
+      .path-card p {
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+      }
+
+      .path-stats {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .path-stat {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent-primary);
+      }
+
+      .stat-label {
+        font-size: 0.9rem;
+        color: var(--text-tertiary);
+      }
+
+      .start-path {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--accent-primary);
+        font-weight: 500;
+      }
+
+      .start-path i {
+        transition: transform var(--transition-speed);
+      }
+
+      .start-path:hover i {
+        transform: translateX(5px);
+      }
+
+      .load-more {
+        display: block;
+        width: fit-content;
+        margin: 0 auto;
+        padding: 0.75rem 2rem;
+        background-color: transparent;
+        border: 1px solid var(--accent-primary);
+        color: var(--accent-primary);
+        border-radius: 4px;
+        font-weight: 500;
+        transition: all var(--transition-speed);
+      }
+
+      .load-more:hover {
+        background-color: rgba(0, 229, 255, 0.1);
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 768px) {
+        .tutorials-container {
+          padding: 2rem 1rem;
+        }
+
+        .tutorials-header h1 {
+          font-size: 2rem;
+        }
+
+        .path-header {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+
+        .path-header h2 {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header x-data="{ mobileMenuOpen: false }">
+      <div class="logo-container">
+        <div class="logo">
+          <span class="logo-text">ART<span class="accent">ONE</span></span>
+          <span class="logo-subtitle">C&C Platform</span>
+        </div>
+      </div>
+      <button class="mobile-menu-button" @click="mobileMenuOpen = !mobileMenuOpen">
+        <i class="bx bx-menu"></i>
+      </button>
+      <nav :class="{'active': mobileMenuOpen}">
+        <a href="/"><i class="bx bx-home"></i> Inicio</a>
+        <a href="/documentation.html"><i class="bx bx-book-open"></i> Documentación</a>
+        <a href="/tools.html"><i class="bx bx-wrench"></i> Herramientas</a>
+        <a href="/news.html"><i class="bx bx-news"></i> Noticias</a>
+        <a href="/community.html"><i class="bx bx-group"></i> Comunidad</a>
+        <a href="/contact.html"><i class="bx bx-envelope"></i> Contacto</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="/login.html" class="login-btn">Iniciar Sesión</a>
+        <a href="/register.html" class="register-btn">Registrarse</a>
+      </div>
+    </header>
+
+    <main class="tutorials-container">
+      <div class="tutorials-header">
+        <h1>Tutoriales y <span class="accent">Guías</span></h1>
+        <p>Aprende a utilizar Art One con nuestros tutoriales detallados y rutas de aprendizaje personalizadas.</p>
+      </div>
+
+      <section class="learning-paths">
+        <div class="path-header">
+          <h2>Rutas de <span class="accent">Aprendizaje</span></h2>
+          <a href="/learning-paths" class="view-all">Ver todas las rutas <i class="bx bx-right-arrow-alt"></i></a>
+        </div>
+
+        <div class="path-grid">
+          <div class="path-card">
+            <div class="path-icon">
+              <i class="bx bx-rocket"></i>
+            </div>
+            <h3>Fundamentos de Pentesting</h3>
+            <p>Domina los conceptos básicos y herramientas esenciales para pruebas de penetración.</p>
+            <div class="path-stats">
+              <div class="path-stat">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Tutoriales</div>
+              </div>
+              <div class="path-stat">
+                <div class="stat-number">8h</div>
+                <div class="stat-label">Duración</div>
+              </div>
+            </div>
+            <a href="/paths/pentesting-basics" class="start-path">
+              Comenzar <i class="bx bx-right-arrow-alt"></i>
+            </a>
+          </div>
+
+          <div class="path-card">
+            <div class="path-icon">
+              <i class="bx bx-code-block"></i>
+            </div>
+            <h3>Explotación Avanzada</h3>
+            <p>Técnicas avanzadas de explotación y post-explotación con Art One.</p>
+            <div class="path-stats">
+              <div class="path-stat">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Tutoriales</div>
+              </div>
+              <div class="path-stat">
+                <div class="stat-number">12h</div>
+                <div class="stat-label">Duración</div>
+              </div>
+            </div>
+            <a href="/paths/advanced-exploitation" class="start-path">
+              Comenzar <i class="bx bx-right-arrow-alt"></i>
+            </a>
+          </div>
+
+          <div class="path-card">
+            <div class="path-icon">
+              <i class="bx bx-shield-quarter"></i>
+            </div>
+            <h3>Seguridad Web</h3>
+            <p>Aprende a identificar y explotar vulnerabilidades en aplicaciones web.</p>
+            <div class="path-stats">
+              <div class="path-stat">
+                <div class="stat-number">18</div>
+                <div class="stat-label">Tutoriales</div>
+              </div>
+              <div class="path-stat">
+                <div class="stat-number">15h</div>
+                <div class="stat-label">Duración</div>
+              </div>
+            </div>
+            <a href="/paths/web-security" class="start-path">
+              Comenzar <i class="bx bx-right-arrow-alt"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div class="tutorials-filter">
+        <div class="filter-options">
+          <div class="filter-option active">Todos</div>
+          <div class="filter-option">Principiante</div>
+          <div class="filter-option">Intermedio</div>
+          <div class="filter-option">Avanzado</div>
+          <div class="filter-option">Reconocimiento</div>
+          <div class="filter-option">Explotación</div>
+          <div class="filter-option">Post-Explotación</div>
+        </div>
+
+        <div class="search-tutorials">
+          <i class="bx bx-search"></i>
+          <input type="text" placeholder="Buscar tutoriales...">
+        </div>
+      </div>
+
+      <div class="tutorials-grid">
+        <div class="tutorial-card">
+          <div class="tutorial-image">
+            <span class="tutorial-level level-beginner">Principiante</span>
+          </div>
+          <div class="tutorial-content">
+            <div class="tutorial-meta">
+              <span class="tutorial-category">Reconocimiento</span>
+              <span class="tutorial-duration">
+                <i class="bx bx-time"></i> 45 min
+              </span>
+            </div>
+            <h3 class="tutorial-title">Primeros pasos con Art One</h3>
+            <p class="tutorial-description">Aprende a configurar y utilizar las funcionalidades básicas de Art One para tus primeras pruebas de penetración.</p>
+            <div class="tutorial-footer">
+              <div class="tutorial-author">
+                <div class="author-avatar"></div>
+                <span class="author-name">Carlos Mendoza</span>
+              </div>
+              <a href="/tutorials/getting-started" class="start-tutorial">
+                Comenzar <i class="bx bx-right-arrow-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tutorial-card">
+          <div class="tutorial-image">
+            <span class="tutorial-level level-intermediate">Intermedio</span>
+          </div>
+          <div class="tutorial-content">
+            <div class="tutorial-meta">
+              <span class="tutorial-category">Explotación</span>
+              <span class="tutorial-duration">
+                <i class="bx bx-time"></i> 1h 20min
+              </span>
+            </div>
+            <h3 class="tutorial-title">Explotación de vulnerabilidades web</h3>
+            <p class="tutorial-description">Técnicas avanzadas para identificar y explotar vulnerabilidades comunes en aplicaciones web.</p>
+            <div class="tutorial-footer">
+              <div class="tutorial-author">
+                <div class="author-avatar"></div>
+                <span class="author-name">Elena Rodríguez</span>
+              </div>
+              <a href="/tutorials/web-exploitation" class="start-tutorial">
+                Comenzar <i class="bx bx-right-arrow-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tutorial-card">
+          <div class="tutorial-image">
+            <span class="tutorial-level level-advanced">Avanzado</span>
+          </div>
+          <div class="tutorial-content">
+            <div class="tutorial-meta">
+              <span class="tutorial-category">Post-Explotación</span>
+              <span class="tutorial-duration">
+                <i class="bx bx-time"></i> 2h
+              </span>
+            </div>
+            <h3 class="tutorial-title">Técnicas de persistencia avanzada</h3>
+            <p class="tutorial-description">Aprende a mantener el acceso a sistemas comprometidos de manera segura y efectiva.</p>
+            <div class="tutorial-footer">
+              <div class="tutorial-author">
+                <div class="author-avatar"></div>
+                <span class="author-name">David López</span>
+              </div>
+              <a href="/tutorials/advanced-persistence" class="start-tutorial">
+                Comenzar <i class="bx bx-right-arrow-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tutorial-card">
+          <div class="tutorial-image">
+            <span class="tutorial-level level-intermediate">Intermedio</span>
+          </div>
+          <div class="tutorial-content">
+            <div class="tutorial-meta">
+              <span class="tutorial-category">Reconocimiento</span>
+              <span class="tutorial-duration">
+                <i class="bx bx-time"></i> 1h
+              </span>
+            </div>
+            <h3 class="tutorial-title">OSINT con Art One</h3>
+            <p class="tutorial-description">Utiliza las herramientas de inteligencia de fuentes abiertas integradas en Art One.</p>
+            <div class="tutorial-footer">
+              <div class="tutorial-author">
+                <div class="author-avatar"></div>
+                <span class="author-name">Ana Martínez</span>
+              </div>
+              <a href="/tutorials/osint-tools" class="start-tutorial">
+                Comenzar <i class="bx bx-right-arrow-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tutorial-card">
+          <div class="tutorial-image">
+            <span class="tutorial-level level-advanced">Avanzado</span>
+          </div>
+          <div class="tutorial-content">
+            <div class="tutorial-meta">
+              <span class="tutorial-category">Explotación</span>
+              <span class="tutorial-duration">
+                <i class="bx bx-time"></i> 1h 45min
+              </span>
+            </div>
+            <h3 class="tutorial-title">Evasión de IDS/IPS</h3>
+            <p class="tutorial-description">Técnicas avanzadas para evadir sistemas de detección y prevención de intrusiones.</p>
+            <div class="tutorial-footer">
+              <div class="tutorial-author">
+                <div class="author-avatar"></div>
+                <span class="author-name">Miguel Torres</span>
+              </div>
+              <a href="/tutorials/ids-evasion" class="start-tutorial">
+                Comenzar <i class="bx bx-right-arrow-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tutorial-card">
+          <div class="tutorial-image">
+            <span class="tutorial-level level-beginner">Principiante</span>
+          </div>
+          <div class="tutorial-content">
+            <div class="tutorial-meta">
+              <span class="tutorial-category">Informes</span>
+              <span class="tutorial-duration">
+                <i class="bx bx-time"></i> 30min
+              </span>
+            </div>
+            <h3 class="tutorial-title">Generación de informes profesionales</h3>
+            <p class="tutorial-description">Aprende a crear informes detallados y profesionales de tus pruebas de penetración.</p>
+            <div class="tutorial-footer">
+              <div class="tutorial-author">
+                <div class="author-avatar"></div>
+                <span class="author-name">Laura Sánchez</span>
+              </div>
+              <a href="/tutorials/reporting" class="start-tutorial">
+                Comenzar <i class="bx bx-right-arrow-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="load-more">Cargar más tutoriales</button>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <span class="logo-text">ART<span class="accent">ONE</span></span>
+            <span class="logo-subtitle">C&C Platform</span>
+          </div>
+          <p>Plataforma avanzada de Command & Control para profesionales de la ciberseguridad y pentesting.</p>
+          <div class="social-icons">
+            <a href="#"><i class="bx bxl-github"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-linkedin"></i></a>
+            <a href="#"><i class="bx bxl-discord-alt"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Enlaces rápidos</h3>
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/documentation.html">Documentación</a></li>
+            <li><a href="/tools.html">Herramientas</a></li>
+            <li><a href="/news.html">Noticias</a></li>
+            <li><a href="/community.html">Comunidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Recursos</h3>
+          <ul>
+            <li><a href="/tutorials.html">Tutoriales</a></li>
+            <li><a href="/api-docs.html">API</a></li>
+            <li><a href="/changelog.html">Changelog</a></li>
+            <li><a href="/roadmap.html">Roadmap</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="/terms.html">Términos de uso</a></li>
+            <li><a href="/privacy.html">Política de privacidad</a></li>
+            <li><a href="/license.html">Licencia</a></li>
+            <li><a href="/responsible-disclosure.html">Divulgación responsable</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Art One. Todos los derechos reservados.</p>
+        <p class="disclaimer">Art One debe utilizarse exclusivamente en entornos autorizados. No nos hacemos responsables del uso indebido de esta plataforma.</p>
+      </div>
+    </footer>
+  </body>
+</html>

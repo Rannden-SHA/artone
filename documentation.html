@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Documentación | Art One - Plataforma C&C de Pentesting</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Documentación completa de Art One - Plataforma avanzada de Command & Control para pentesting y ciberseguridad."
+    />
+    <!-- Estilos globales -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Boxicons y AlpineJS -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <script defer src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js"></script>
+
+    <!-- Script global (contiene la lógica de animaciones, búsqueda y resaltado) -->
+    <script type="module" src="script.js"></script>
+
+    <!-- Estilos específicos de la documentación -->
+    <style>
+      .documentation-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: flex;
+        gap: 2rem;
+      }
+      .sidebar {
+        width: 250px;
+        position: sticky;
+        top: calc(var(--header-height) + 2rem);
+        height: calc(100vh - var(--header-height) - 4rem);
+        overflow-y: auto;
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+      }
+      .sidebar-title {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        color: var(--accent-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .sidebar-menu {
+        margin-bottom: 2rem;
+      }
+      .sidebar-menu h3 {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        color: var(--text-tertiary);
+        margin-bottom: 1rem;
+      }
+      .sidebar-menu ul {
+        margin-bottom: 1.5rem;
+      }
+      .sidebar-menu li {
+        margin-bottom: 0.5rem;
+      }
+      .sidebar-menu a {
+        display: block;
+        padding: 0.5rem;
+        border-radius: 4px;
+        color: var(--text-secondary);
+        transition: all var(--transition-speed);
+      }
+      .sidebar-menu a:hover,
+      .sidebar-menu a.active {
+        background-color: rgba(0, 229, 255, 0.1);
+        color: var(--accent-primary);
+      }
+      .content {
+        flex: 1;
+        min-width: 0;
+      }
+      .doc-section {
+        margin-bottom: 3rem;
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+      }
+      .doc-section h2 {
+        text-align: left;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .doc-section h3 {
+        margin: 2rem 0 1rem;
+        color: var(--accent-primary);
+      }
+      .doc-section p {
+        margin-bottom: 1rem;
+        color: var(--text-secondary);
+      }
+      .doc-section ul,
+      .doc-section ol {
+        margin: 1rem 0 1.5rem 1.5rem;
+      }
+      .doc-section ul li,
+      .doc-section ol li {
+        margin-bottom: 0.5rem;
+        color: var(--text-secondary);
+        list-style-type: disc;
+      }
+      .doc-section ol li {
+        list-style-type: decimal;
+      }
+      .code-block {
+        background-color: var(--bg-tertiary);
+        padding: 1.5rem;
+        border-radius: 6px;
+        margin: 1.5rem 0;
+        overflow-x: auto;
+        font-family: monospace;
+        border: 1px solid var(--border-color);
+      }
+      .search-box {
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+      .search-box input {
+        width: 100%;
+        padding: 0.75rem 1rem 0.75rem 2.5rem;
+        background-color: var(--bg-tertiary);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        color: var(--text-primary);
+        font-size: 0.9rem;
+      }
+      .search-box i {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-tertiary);
+      }
+      .search-box input:focus {
+        outline: none;
+        border-color: var(--accent-primary);
+      }
+      .doc-nav {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border-color);
+      }
+      .doc-nav a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background-color: var(--bg-tertiary);
+        border-radius: 4px;
+        transition: all var(--transition-speed);
+      }
+      .doc-nav a:hover {
+        background-color: rgba(0, 229, 255, 0.1);
+        color: var(--accent-primary);
+      }
+      .doc-nav a.prev {
+        padding-left: 1rem;
+      }
+      .doc-nav a.next {
+        padding-right: 1rem;
+      }
+      /* Resaltado de búsqueda */
+      mark {
+        background-color: #00e5ff;
+        color: #000;
+        padding: 0 2px;
+        border-radius: 2px;
+      }
+
+      @media (max-width: 1024px) {
+        .documentation-container {
+          flex-direction: column;
+        }
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+          top: 0;
+        }
+      }
+    </style>
+
+    <!-- Componente Alpine.js para manejar la documentación -->
+    <script>
+      document.addEventListener("alpine:init", () => {
+        Alpine.data("documentationData", () => ({
+          // Índice de la sección actual
+          currentIndex: 0,
+
+          // Almacena el texto de búsqueda
+          searchTerm: '',
+
+          // Definición de cada apartado de la documentación
+          docSections: [
+            {
+              id: "getting-started",
+              menuTitle: "Primeros pasos",
+              title: "Primeros pasos con Art One",
+              content: `
+                <p>
+                  Art One es una plataforma avanzada de Command & Control (C&C) diseñada para profesionales de la ciberseguridad y pentesting.
+                  Este sistema centralizado te permite coordinar operaciones complejas, gestionar agentes remotos y analizar vulnerabilidades de manera integral.
+                </p>
+                <h3>¿Qué es Art One?</h3>
+                <p>
+                  Art One integra múltiples herramientas y funciones en una única interfaz, facilitando la gestión de pruebas de penetración y la monitorización en tiempo real de sistemas y redes.
+                  Su arquitectura modular permite adaptarlo a diferentes escenarios y necesidades.
+                </p>
+                <h3>Características principales</h3>
+                <ul>
+                  <li>Gestión centralizada de operaciones y agentes</li>
+                  <li>Análisis de vulnerabilidades y escaneo de sistemas</li>
+                  <li>Monitorización en tiempo real con alertas</li>
+                  <li>Generación de informes detallados y personalizables</li>
+                  <li>Integración de API REST para automatización</li>
+                  <li>Soporte para módulos personalizados</li>
+                </ul>
+                <h3>Próximos pasos</h3>
+                <ol>
+                  <li>Revisar los requisitos del sistema</li>
+                  <li>Instalar y configurar la plataforma</li>
+                  <li>Explorar la guía del panel de control</li>
+                  <li>Iniciar una prueba de escaneo y análisis</li>
+                </ol>
+              `,
+            },
+            {
+              id: "installation",
+              menuTitle: "Instalación",
+              title: "Instalación",
+              content: `
+                <p>
+                  La instalación de Art One se realiza en dos partes: la configuración del servidor C&C y la instalación de los agentes en los sistemas objetivo.
+                </p>
+                <h3>Requisitos previos</h3>
+                <ul>
+                  <li>Sistema operativo compatible (Linux, Windows o macOS)</li>
+                  <li>Acceso a internet para descargas y actualizaciones</li>
+                  <li>Permisos de administrador en el servidor</li>
+                  <li>Dependencias: Node.js, Python (según módulos instalados), etc.</li>
+                </ul>
+                <h3>Pasos de instalación</h3>
+                <ol>
+                  <li><strong>Descarga del paquete:</strong> Clona el repositorio oficial o descarga el paquete comprimido.</li>
+                  <li><strong>Instalación de dependencias:</strong> Ejecuta <code>npm install</code> para instalar las dependencias necesarias.</li>
+                  <li><strong>Configuración del servidor:</strong> Edita el archivo <code>config.json</code> para ajustar puertos y rutas.</li>
+                  <li><strong>Inicialización del servidor:</strong> Inicia el servidor con <code>npm start</code>.</li>
+                  <li><strong>Instalación de agentes:</strong> Despliega los agentes en los sistemas objetivo.</li>
+                </ol>
+                <h3>Verificación</h3>
+                <p>
+                  Tras la instalación, verifica que el servidor se inicie correctamente y que los agentes se conecten de forma segura.
+                  Consulta los logs del sistema para confirmar que no existan errores críticos.
+                </p>
+              `,
+            },
+            {
+              id: "architecture",
+              menuTitle: "Arquitectura",
+              title: "Arquitectura de Art One",
+              content: `
+                <p>
+                  La arquitectura de Art One está basada en un modelo cliente-servidor, en el que el servidor central actúa como el cerebro del sistema
+                  y los agentes se comunican de forma segura para ejecutar tareas y enviar datos.
+                </p>
+                <h3>Componentes principales</h3>
+                <ul>
+                  <li><strong>Servidor C&C:</strong> Gestiona la comunicación, el análisis y la coordinación de operaciones.</li>
+                  <li><strong>Agentes:</strong> Se despliegan en los sistemas objetivo para recolectar datos y ejecutar pruebas.</li>
+                  <li><strong>Módulos de funcionalidad:</strong> Conjunto de herramientas integradas para escaneo, explotación, análisis forense, etc.</li>
+                </ul>
+                <h3>Diagrama de la arquitectura</h3>
+                <div class="code-block">
+                  # Estructura de Art One
+                  art_one/
+                  ├── art_one_server/
+                  │   ├── dashboard/       # Interfaz web
+                  │   ├── api/             # API REST
+                  │   └── modules/         # Módulos de funcionalidades
+                  └── art_one_agent/
+                      ├── core/            # Funcionalidades principales
+                      └── plugins/         # Módulos y extensiones
+                </div>
+                <h3>Seguridad y comunicación</h3>
+                <p>
+                  Todas las comunicaciones entre el servidor y los agentes se cifran utilizando protocolos seguros.
+                  El sistema permite la autenticación mutua y la verificación de integridad para prevenir accesos no autorizados.
+                </p>
+              `,
+            },
+            {
+              id: "requirements",
+              menuTitle: "Requisitos del sistema",
+              title: "Requisitos del Sistema",
+              content: `
+                <p>
+                  Para un funcionamiento óptimo de Art One, se recomienda cumplir con los siguientes requisitos:
+                </p>
+                <h3>Requisitos mínimos</h3>
+                <ul>
+                  <li>CPU: 2 núcleos</li>
+                  <li>RAM: 4 GB</li>
+                  <li>Almacenamiento: 20 GB de espacio libre</li>
+                  <li>Sistema operativo: Linux (recomendado), Windows o macOS</li>
+                  <li>Conexión a internet estable</li>
+                </ul>
+                <h3>Requisitos recomendados</h3>
+                <ul>
+                  <li>CPU: 4 núcleos o más</li>
+                  <li>RAM: 8 GB o más</li>
+                  <li>Almacenamiento: 50 GB de espacio libre o superior</li>
+                  <li>Configuración en red con alta disponibilidad y redundancia</li>
+                </ul>
+              `,
+            },
+            {
+              id: "dashboard",
+              menuTitle: "Panel de control",
+              title: "Guía Básica: Panel de Control",
+              content: `
+                <p>
+                  El panel de control de Art One ofrece una vista centralizada de todas las operaciones.
+                  Desde aquí, los usuarios pueden supervisar el estado de la red, gestionar agentes y acceder a informes.
+                </p>
+                <h3>Características del panel</h3>
+                <ul>
+                  <li>Visualización de estadísticas en tiempo real</li>
+                  <li>Acceso a informes detallados y gráficos interactivos</li>
+                  <li>Control de operaciones y configuración de alertas</li>
+                </ul>
+                <h3>Cómo utilizar el panel</h3>
+                <ol>
+                  <li>Inicia sesión en la plataforma y accede al panel de control.</li>
+                  <li>Utiliza los filtros y las herramientas de búsqueda para localizar información relevante.</li>
+                  <li>Visualiza los reportes generados y exporta en PDF o CSV si lo deseas.</li>
+                </ol>
+              `,
+            },
+            {
+              id: "agents",
+              menuTitle: "Gestión de agentes",
+              title: "Guía Básica: Gestión de Agentes",
+              content: `
+                <p>
+                  La gestión de agentes es fundamental para desplegar pruebas de penetración de forma remota.
+                  Esta guía explica cómo añadir, configurar y monitorizar los agentes conectados.
+                </p>
+                <h3>Añadir y configurar agentes</h3>
+                <ul>
+                  <li>Instala el agente en el sistema objetivo siguiendo la guía de instalación.</li>
+                  <li>Configura los parámetros de conexión en el archivo de configuración del agente.</li>
+                  <li>Verifica la conexión desde el panel de control y asigna roles según la operación.</li>
+                </ul>
+                <h3>Monitorización y mantenimiento</h3>
+                <p>
+                  Revisa periódicamente el estado de los agentes, sus logs y realiza actualizaciones para garantizar la seguridad y el rendimiento.
+                </p>
+              `,
+            },
+            {
+              id: "scanning",
+              menuTitle: "Escaneo de vulnerabilidades",
+              title: "Guía Básica: Escaneo de Vulnerabilidades",
+              content: `
+                <p>
+                  Art One integra herramientas avanzadas para el escaneo y análisis de vulnerabilidades.
+                  Aprende a configurar y ejecutar un escaneo para identificar puntos débiles en tu infraestructura.
+                </p>
+                <h3>Configuración del escáner</h3>
+                <ol>
+                  <li>Accede a la sección de escaneo en el panel de control.</li>
+                  <li>Selecciona el rango de IPs o sistemas a escanear.</li>
+                  <li>Ajusta los parámetros del escaneo según el entorno y la criticidad.</li>
+                </ol>
+                <h3>Interpretación de resultados</h3>
+                <p>
+                  Los resultados se muestran en gráficos y tablas, indicando la gravedad de cada vulnerabilidad.
+                  Utiliza esta información para priorizar las acciones de mitigación.
+                </p>
+              `,
+            },
+            {
+              id: "reporting",
+              menuTitle: "Generación de informes",
+              title: "Guía Básica: Generación de Informes",
+              content: `
+                <p>
+                  Los informes generados por Art One proporcionan una visión detallada de los hallazgos de seguridad y el estado de la red.
+                  Esta guía te muestra cómo generar y personalizar informes.
+                </p>
+                <h3>Pasos para generar un informe</h3>
+                <ol>
+                  <li>Accede a la sección de reportes en el panel de control.</li>
+                  <li>Selecciona el período y los datos a incluir en el informe.</li>
+                  <li>Elige el formato de exportación (PDF, CSV, etc.) y genera el informe.</li>
+                </ol>
+                <h3>Personalización</h3>
+                <p>
+                  Puedes agregar logotipos, cambiar la disposición de la información y aplicar filtros para obtener un informe adaptado a tus necesidades.
+                </p>
+              `,
+            },
+            {
+              id: "custom-modules",
+              menuTitle: "Módulos personalizados",
+              title: "Funciones Avanzadas: Módulos Personalizados",
+              content: `
+                <p>
+                  Art One permite la integración de módulos personalizados para ampliar sus capacidades.
+                  Esta sección explica cómo desarrollar, integrar y desplegar nuevos módulos.
+                </p>
+                <h3>Desarrollo del módulo</h3>
+                <ul>
+                  <li>Utiliza la API interna de Art One para interactuar con el sistema.</li>
+                  <li>Escribe el módulo en el lenguaje recomendado y sigue las guías de estilo.</li>
+                  <li>Realiza pruebas unitarias para asegurar su funcionamiento.</li>
+                </ul>
+                <h3>Integración y despliegue</h3>
+                <ol>
+                  <li>Sube el módulo al directorio <code>art_one_server/modules/</code>.</li>
+                  <li>Configura el módulo en el archivo de configuración.</li>
+                  <li>Reinicia el servidor para que se cargue el nuevo módulo.</li>
+                </ol>
+              `,
+            },
+            {
+              id: "automation",
+              menuTitle: "Automatización",
+              title: "Funciones Avanzadas: Automatización",
+              content: `
+                <p>
+                  La automatización en Art One te permite programar tareas recurrentes,
+                  como escaneos y actualizaciones, y responder a eventos de forma automática.
+                </p>
+                <h3>Configuración de tareas automáticas</h3>
+                <ol>
+                  <li>Accede a la sección de automatización en el panel de control.</li>
+                  <li>Define las condiciones y el cronograma de la tarea.</li>
+                  <li>Guarda la configuración para que se ejecute según lo programado.</li>
+                </ol>
+                <h3>Ejemplos de automatización</h3>
+                <ul>
+                  <li>Escaneo de vulnerabilidades programado cada 24 horas.</li>
+                  <li>Generación automática de informes semanales.</li>
+                  <li>Notificaciones de alertas críticas a través de correo o SMS.</li>
+                </ul>
+              `,
+            },
+            {
+              id: "api",
+              menuTitle: "API REST",
+              title: "Funciones Avanzadas: API REST",
+              content: `
+                <p>
+                  La API REST de Art One permite la integración con otros sistemas y la automatización de procesos.
+                  En esta sección se documentan los endpoints, métodos y ejemplos de uso.
+                </p>
+                <h3>Endpoints principales</h3>
+                <ul>
+                  <li><code>/api/agents</code> - Gestión de agentes.</li>
+                  <li><code>/api/reports</code> - Generación y consulta de informes.</li>
+                  <li><code>/api/scan</code> - Iniciar escaneos de vulnerabilidades.</li>
+                </ul>
+                <h3>Ejemplo de solicitud</h3>
+                <div class="code-block">
+                  GET /api/agents HTTP/1.1
+                  Host: artone.example.com
+                  Authorization: Bearer {token}
+                </div>
+              `,
+            },
+            {
+              id: "integrations",
+              menuTitle: "Integraciones",
+              title: "Funciones Avanzadas: Integraciones",
+              content: `
+                <p>
+                  Art One se integra con múltiples herramientas y plataformas para mejorar la gestión de la seguridad.
+                  Esta sección detalla las integraciones disponibles, desde sistemas SIEM hasta plataformas de notificación.
+                </p>
+                <h3>Integraciones populares</h3>
+                <ul>
+                  <li>Integración con Splunk para análisis de logs.</li>
+                  <li>Conexión con sistemas de ticketing para la gestión de incidencias.</li>
+                  <li>Integración con plataformas de mensajería para notificaciones en tiempo real.</li>
+                </ul>
+                <h3>Configuración</h3>
+                <p>
+                  Para configurar una integración, edita el archivo de configuración y sigue la guía específica de la integración deseada.
+                </p>
+              `,
+            },
+            {
+              id: "cli",
+              menuTitle: "Comandos CLI",
+              title: "Referencia: Comandos CLI",
+              content: `
+                <p>
+                  Art One incluye una serie de comandos CLI para administrar la plataforma desde la terminal.
+                  A continuación se muestra una lista de los comandos más utilizados.
+                </p>
+                <h3>Comandos principales</h3>
+                <ul>
+                  <li><code>artone start</code> - Inicia el servidor C&C.</li>
+                  <li><code>artone stop</code> - Detiene el servidor.</li>
+                  <li><code>artone status</code> - Muestra el estado actual del sistema.</li>
+                  <li><code>artone agent add [options]</code> - Añade un nuevo agente.</li>
+                </ul>
+                <h3>Ejemplo de uso</h3>
+                <div class="code-block">
+                  $ artone start
+                  Iniciando Art One...
+                  Servidor iniciado en http://localhost:8080
+                </div>
+              `,
+            },
+            {
+              id: "config",
+              menuTitle: "Archivo de configuración",
+              title: "Referencia: Archivo de configuración",
+              content: `
+                <p>
+                  El archivo de configuración de Art One (<code>config.json</code>) permite ajustar parámetros críticos del sistema.
+                  A continuación se detallan las principales opciones.
+                </p>
+                <h3>Parámetros importantes</h3>
+                <ul>
+                  <li><strong>port</strong>: Puerto en el que se ejecuta el servidor.</li>
+                  <li><strong>security</strong>: Configuraciones de cifrado y autenticación.</li>
+                  <li><strong>modules</strong>: Lista de módulos habilitados y sus configuraciones.</li>
+                </ul>
+                <h3>Ejemplo de configuración</h3>
+                <div class="code-block">
+                  {
+                    "port": 8080,
+                    "security": {
+                      "encryption": "AES-256",
+                      "tokenExpiry": "3600s"
+                    },
+                    "modules": ["dashboard", "api", "scanning"]
+                  }
+                </div>
+              `,
+            },
+            {
+              id: "troubleshooting",
+              menuTitle: "Solución de problemas",
+              title: "Referencia: Solución de problemas",
+              content: `
+                <p>
+                  En esta sección se abordan los problemas más comunes y sus soluciones.
+                </p>
+                <h3>Problemas frecuentes</h3>
+                <ul>
+                  <li>
+                    <strong>El servidor no se inicia:</strong> Verifica que no haya otro proceso utilizando el puerto configurado
+                    y revisa los logs en busca de errores.
+                  </li>
+                  <li>
+                    <strong>Conexión de agentes fallida:</strong> Asegúrate de que el archivo de configuración del agente esté correctamente parametrizado
+                    y que exista conectividad entre el agente y el servidor.
+                  </li>
+                  <li>
+                    <strong>Errores en la generación de informes:</strong> Revisa las configuraciones del módulo de informes y actualiza
+                    las dependencias si es necesario.
+                  </li>
+                </ul>
+                <h3>Recursos adicionales</h3>
+                <p>
+                  Consulta la sección de FAQ o contacta con el soporte técnico si el problema persiste.
+                </p>
+              `,
+            },
+            {
+              id: "faq",
+              menuTitle: "Preguntas frecuentes",
+              title: "Preguntas Frecuentes (FAQ)",
+              content: `
+                <p>
+                  Aquí encontrarás respuestas a las preguntas más comunes sobre el uso y la administración de Art One.
+                </p>
+                <h3>¿Qué versión de Art One debo utilizar?</h3>
+                <p>
+                  Se recomienda utilizar siempre la última versión estable para aprovechar las mejoras en seguridad y rendimiento.
+                </p>
+                <h3>¿Cómo puedo obtener soporte técnico?</h3>
+                <p>
+                  Puedes contactar con el equipo de soporte a través del formulario de <a href="/contact.html">Contacto</a>
+                  o enviar un correo a soporte@artone.com.
+                </p>
+                <h3>¿Es posible personalizar la interfaz del panel de control?</h3>
+                <p>
+                  Sí, Art One permite la personalización de la interfaz mediante módulos y ajustes en el archivo de configuración.
+                </p>
+              `,
+            },
+          ],
+
+          /**
+           * Función para buscar el término en los contenidos
+           * y saltar a la primera sección donde se encuentre.
+           */
+          searchDocs() {
+            const term = this.searchTerm.trim().toLowerCase();
+            if (!term) return;
+
+            let found = false;
+            for (let i = 0; i < this.docSections.length; i++) {
+              const content = this.docSections[i].content.toLowerCase();
+              if (content.includes(term)) {
+                // Cambiamos la sección activa
+                this.currentIndex = i;
+                found = true;
+
+                // Esperamos a que Alpine renderice
+                this.$nextTick(() => {
+                  const docSection = document.querySelector(".doc-section");
+                  if (docSection) {
+                    docSection.scrollIntoView({ behavior: "smooth" });
+                  }
+                });
+                break;
+              }
+            }
+            // Opcional: si no se encuentra nada, podrías mostrar un mensaje
+            // if (!found) {
+            //   alert('No se encontraron resultados para: ' + this.searchTerm);
+            // }
+          },
+
+          /**
+           * Retorna el contenido HTML de la sección actual
+           * con todas las ocurrencias de searchTerm resaltadas.
+           */
+          highlightedContent() {
+            const rawContent =
+              this.docSections[this.currentIndex]?.content || "";
+            const term = this.searchTerm.trim();
+            if (!term) {
+              return rawContent;
+            }
+            // Regex global e insensible a mayúsculas
+            const regex = new RegExp(`(${term})`, "gi");
+            // Reemplazamos cada coincidencia con <mark>
+            return rawContent.replace(regex, "<mark>$1</mark>");
+          },
+
+          // Función para ir al apartado anterior
+          previousSection() {
+            if (this.currentIndex > 0) {
+              this.currentIndex--;
+              this.$nextTick(() => {
+                const docSection = document.querySelector(".doc-section");
+                if (docSection) {
+                  docSection.scrollIntoView({ behavior: "smooth" });
+                }
+              });
+            }
+          },
+          // Función para ir al siguiente apartado
+          nextSection() {
+            if (this.currentIndex < this.docSections.length - 1) {
+              this.currentIndex++;
+              this.$nextTick(() => {
+                const docSection = document.querySelector(".doc-section");
+                if (docSection) {
+                  docSection.scrollIntoView({ behavior: "smooth" });
+                }
+              });
+            }
+          },
+        }));
+      });
+    </script>
+  </head>
+
+  <body x-data>
+    <!-- Header -->
+    <header x-data="{ mobileMenuOpen: false }">
+      <div class="logo-container">
+        <div class="logo">
+          <span class="logo-text">ART<span class="accent">ONE</span></span>
+          <span class="logo-subtitle">C&C Platform</span>
+        </div>
+      </div>
+      <button class="mobile-menu-button" @click="mobileMenuOpen = !mobileMenuOpen">
+        <i class="bx bx-menu"></i>
+      </button>
+      <nav :class="{'active': mobileMenuOpen}">
+        <a href="/"><i class="bx bx-home"></i> Inicio</a>
+        <a href="/documentation.html" aria-current="page"
+          ><i class="bx bx-book-open"></i> Documentación</a
+        >
+        <a href="/tools.html"><i class="bx bx-wrench"></i> Herramientas</a>
+        <a href="/news.html"><i class="bx bx-news"></i> Noticias</a>
+        <a href="/community.html"><i class="bx bx-group"></i> Comunidad</a>
+        <a href="/contact.html"><i class="bx bx-envelope"></i> Contacto</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="/login.html" class="login-btn">Iniciar Sesión</a>
+        <a href="/register.html" class="register-btn">Registrarse</a>
+      </div>
+    </header>
+
+    <!-- Contenedor principal de la documentación -->
+    <main
+      class="documentation-container"
+      x-data="documentationData()"
+      x-cloak
+    >
+      <!-- Sidebar de navegación -->
+      <aside class="sidebar">
+        <div class="search-box">
+          <i class="bx bx-search"></i>
+          <input
+            type="text"
+            placeholder="Buscar en la documentación..."
+            x-model="searchTerm"
+            @input="searchDocs"
+          />
+        </div>
+        <h2 class="sidebar-title">
+          <i class="bx bx-book"></i> Documentación
+        </h2>
+        <div class="sidebar-menu">
+          <!-- Introducción -->
+          <h3>Introducción</h3>
+          <ul>
+            <template x-for="(section, index) in docSections.filter(s => ['getting-started','installation','architecture','requirements'].includes(s.id))" :key="section.id">
+              <li>
+                <a href="#"
+                   @click.prevent="currentIndex = docSections.indexOf(section); $nextTick(() => {$el.scrollIntoView({behavior:'smooth'});});"
+                   :class="{'active': currentIndex === docSections.indexOf(section)}"
+                   x-text="section.menuTitle">
+                </a>
+              </li>
+            </template>
+          </ul>
+          <!-- Guías básicas -->
+          <h3>Guías básicas</h3>
+          <ul>
+            <template x-for="(section, index) in docSections.filter(s => ['dashboard','agents','scanning','reporting'].includes(s.id))" :key="section.id">
+              <li>
+                <a href="#"
+                   @click.prevent="currentIndex = docSections.indexOf(section); $nextTick(() => {$el.scrollIntoView({behavior:'smooth'});});"
+                   :class="{'active': currentIndex === docSections.indexOf(section)}"
+                   x-text="section.menuTitle">
+                </a>
+              </li>
+            </template>
+          </ul>
+          <!-- Funciones avanzadas -->
+          <h3>Funciones avanzadas</h3>
+          <ul>
+            <template x-for="(section, index) in docSections.filter(s => ['custom-modules','automation','api','integrations'].includes(s.id))" :key="section.id">
+              <li>
+                <a href="#"
+                   @click.prevent="currentIndex = docSections.indexOf(section); $nextTick(() => {$el.scrollIntoView({behavior:'smooth'});});"
+                   :class="{'active': currentIndex === docSections.indexOf(section)}"
+                   x-text="section.menuTitle">
+                </a>
+              </li>
+            </template>
+          </ul>
+          <!-- Referencia -->
+          <h3>Referencia</h3>
+          <ul>
+            <template x-for="(section, index) in docSections.filter(s => ['cli','config','troubleshooting','faq'].includes(s.id))" :key="section.id">
+              <li>
+                <a href="#"
+                   @click.prevent="currentIndex = docSections.indexOf(section); $nextTick(() => {$el.scrollIntoView({behavior:'smooth'});});"
+                   :class="{'active': currentIndex === docSections.indexOf(section)}"
+                   x-text="section.menuTitle">
+                </a>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Contenido principal dinámico -->
+      <div class="content">
+        <!-- Sección activa -->
+        <template x-if="docSections[currentIndex]">
+          <section class="doc-section">
+            <h2 x-text="docSections[currentIndex].title"></h2>
+            <!-- Usamos 'highlightedContent()' para subrayar coincidencias -->
+            <div x-html="highlightedContent()"></div>
+          </section>
+        </template>
+
+        <!-- Navegación Anterior/Siguiente -->
+        <div class="doc-nav">
+          <a href="#" class="prev" @click.prevent="previousSection()" x-show="currentIndex > 0"
+            ><i class="bx bx-chevron-left"></i> Anterior</a
+          >
+          <a href="#" class="next" @click.prevent="nextSection()" x-show="currentIndex < docSections.length - 1"
+            >Siguiente <i class="bx bx-chevron-right"></i></a
+          >
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <span class="logo-text">ART<span class="accent">ONE</span></span>
+            <span class="logo-subtitle">C&C Platform</span>
+          </div>
+          <p>
+            Plataforma avanzada de Command & Control para profesionales de la
+            ciberseguridad y pentesting.
+          </p>
+          <div class="social-icons">
+            <a href="#"><i class="bx bxl-github"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-linkedin"></i></a>
+            <a href="#"><i class="bx bxl-discord-alt"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Enlaces rápidos</h3>
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/documentation.html">Documentación</a></li>
+            <li><a href="/tools.html">Herramientas</a></li>
+            <li><a href="/news.html">Noticias</a></li>
+            <li><a href="/community.html">Comunidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Recursos</h3>
+          <ul>
+            <li><a href="/tutorials.html">Tutoriales</a></li>
+            <li><a href="/api-docs.html">API</a></li>
+            <li><a href="/changelog.html">Changelog</a></li>
+            <li><a href="/roadmap.html">Roadmap</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="/terms.html">Términos de uso</a></li>
+            <li><a href="/privacy.html">Política de privacidad</a></li>
+            <li><a href="/license.html">Licencia</a></li>
+            <li>
+              <a href="/responsible-disclosure.html"
+                >Divulgación responsable</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Art One. Todos los derechos reservados.</p>
+        <p class="disclaimer">
+          Art One debe utilizarse exclusivamente en entornos autorizados. No nos
+          hacemos responsables del uso indebido de esta plataforma.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

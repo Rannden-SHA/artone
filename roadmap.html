@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Roadmap | Art One - Plataforma C&C de Pentesting</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Descubre el futuro de Art One - Plataforma avanzada de Command & Control para pentesting y ciberseguridad." />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script defer src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <script type="module" src="script.js"></script>
+    <style>
+      .roadmap-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+      
+      .roadmap-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      
+      .roadmap-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .roadmap-header p {
+        color: var(--text-secondary);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .timeline {
+        position: relative;
+        padding: 2rem 0;
+      }
+      
+      .timeline::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 100%;
+        background-color: var(--border-color);
+      }
+      
+      .timeline-item {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 50%;
+        position: relative;
+        margin-bottom: 4rem;
+      }
+      
+      .timeline-item:nth-child(even) {
+        justify-content: flex-start;
+        padding-right: 0;
+        padding-left: 50%;
+      }
+      
+      .timeline-content {
+        width: 90%;
+        background-color: var(--bg-secondary);
+        padding: 2rem;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        position: relative;
+      }
+      
+      .timeline-item:nth-child(odd) .timeline-content::before {
+        content: '';
+        position: absolute;
+        right: -15px;
+        top: 20px;
+        border-style: solid;
+        border-width: 15px 0 15px 15px;
+        border-color: transparent transparent transparent var(--bg-secondary);
+      }
+      
+      .timeline-item:nth-child(even) .timeline-content::before {
+        content: '';
+        position: absolute;
+        left: -15px;
+        top: 20px;
+        border-style: solid;
+        border-width: 15px 15px 15px 0;
+        border-color: transparent var(--bg-secondary transparent transparent);
+      }
+      
+      .timeline-date {
+        position: absolute;
+        top: 20px;
+        width: 120px;
+        padding: 0.5rem;
+        background-color: var(--accent-primary);
+        color: var(--bg-primary);
+        border-radius: 4px;
+        text-align: center;
+        font-weight: 600;
+      }
+      
+      .timeline-item:nth-child(odd) .timeline-date {
+        left: calc(100% + 50px);
+      }
+      
+      .timeline-item:nth-child(even) .timeline-date {
+        right: calc(100% + 50px);
+      }
+      
+      .timeline-dot {
+        position: absolute;
+        left: 50%;
+        top: 25px;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 20px;
+        background-color: var(--accent-primary);
+        border-radius: 50%;
+        z-index: 1;
+      }
+      
+      .timeline-dot::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: rgba(0, 229, 255, 0.2);
+        animation: pulse 2s infinite;
+      }
+      
+      @keyframes pulse {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-50 %, -50%) scale(1.5);
+          opacity: 0;
+        }
+      }
+      
+      .timeline-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--accent-primary);
+      }
+      
+      .timeline-description {
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+      }
+      
+      .timeline-features {
+        list-style: none;
+      }
+      
+      .timeline-features li {
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-secondary);
+      }
+      
+      .timeline-features i {
+        color: var(--accent-primary);
+      }
+      
+      .status-tag {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+      
+      .status-tag.planned {
+        background-color: rgba(0, 229, 255, 0.1);
+        color: var(--accent-primary);
+      }
+      
+      .status-tag.in-progress {
+        background-color: rgba(255, 165, 2, 0.1);
+        color: var(--warning);
+      }
+      
+      .status-tag.completed {
+        background-color: rgba(46, 213, 115, 0.1);
+        color: var(--success);
+      }
+      
+      @media (max-width: 768px) {
+        .roadmap-container {
+          padding: 2rem 1rem;
+        }
+        
+        .timeline::before {
+          left: 0;
+        }
+        
+        .timeline-item {
+          padding-right: 0;
+          padding-left: 2rem;
+        }
+        
+        .timeline-item:nth-child(even) {
+          padding-left: 2rem;
+        }
+        
+        .timeline-content {
+          width: 100%;
+        }
+        
+        .timeline-dot {
+          left: 0;
+        }
+        
+        .timeline-date {
+          position: relative;
+          left: 0 !important;
+          right: 0 !important;
+          top: 0;
+          margin-bottom: 1rem;
+          width: fit-content;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::before,
+        .timeline-item:nth-child(even) .timeline-content::before {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header x-data="{ mobileMenuOpen: false }">
+      <div class="logo-container">
+        <img src="source/logo_light.png" alt="Logo Art One" class="logo-image" />
+        <div class="logo">
+          <span class="logo-text">ART<span class="accent">ONE</span></span>
+        </div>
+      </div>
+      <button class="mobile-menu-button" @click="mobileMenuOpen = !mobileMenuOpen">
+        <i class="bx bx-menu"></i>
+      </button>
+      <nav :class="{'active': mobileMenuOpen}">
+        <a href="/"><i class="bx bx-home"></i> Inicio</a>
+        <a href="/documentation.html"><i class="bx bx-book-open"></i> Documentación</a>
+        <a href="/tools.html"><i class="bx bx-wrench"></i> Herramientas</a>
+        <a href="/news.html"><i class="bx bx-news"></i> Noticias</a>
+        <a href="/community.html"><i class="bx bx-group"></i> Comunidad</a>
+        <a href="/contact.html"><i class="bx bx-envelope"></i> Contacto</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="/login.html" class="login-btn">Iniciar Sesión</a>
+        <a href="/register.html" class="register-btn">Registrarse</a>
+      </div>
+    </header>
+
+    <main class="roadmap-container">
+      <div class="roadmap-header">
+        <h1>Nuestro <span class="accent">Roadmap</span></h1>
+        <p>Descubre las próximas características y mejoras planificadas para Art One. Nuestro compromiso es mejorar constantemente la plataforma para satisfacer las necesidades de los profesionales de la ciberseguridad.</p>
+      </div>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="status-tag completed">Completado</span>
+            <div class="timeline-date">Q2 2025</div>
+            <div class="timeline-dot"></div>
+            <h2 class="timeline-title">Actualización 3.5</h2>
+            <p class="timeline-description">Mejoras significativas en el motor de escaneo y nuevas capacidades de explotación.</p>
+            <ul class="timeline-features">
+              <li><i class="bx bx-check"></i> Motor de escaneo optimizado</li>
+              <li><i class="bx bx-check"></i> Nuevos módulos de explotación</li>
+              <li><i class="bx bx-check"></i> Interfaz renovada</li>
+              <li><i class="bx bx-check"></i> Mejoras en el rendimiento</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="status-tag in-progress">En Progreso</span>
+            <div class="timeline-date">Q3 2025</div>
+            <div class="timeline-dot"></div>
+            <h2 class="timeline-title">Análisis de Contenedores</h2>
+            <p class="timeline-description">Nuevas herramientas para el análisis de seguridad en contenedores y entornos Docker.</p>
+            <ul class="timeline-features">
+              <li><i class="bx bx-check"></i> Escaneo de imágenes Docker</li>
+              <li><i class="bx bx-check"></i> Detección de malware en contenedores</li>
+              <li><i class="bx bx-check"></i> Análisis de configuraciones</li>
+              <li><i class="bx bx-check"></i> Integración con registros populares</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="status-tag planned">Planificado</span>
+            <div class="timeline-date">Q4 2025</div>
+            <div class="timeline-dot"></div>
+            <h2 class="timeline-title">Machine Learning Integration</h2>
+            <p class="timeline-description">Incorporación de capacidades de IA/ML para mejorar la detección y análisis.</p>
+            <ul class="timeline-features">
+              <li><i class="bx bx-check"></i> Detección automática de patrones</li>
+              <li><i class="bx bx-check"></i> Predicción de vulnerabilidades</li>
+              <li><i class="bx bx-check"></i> Análisis de comportamiento</li>
+              <li><i class="bx bx-check"></i> Reportes inteligentes</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="status-tag planned">Planificado</span>
+            <div class="timeline-date">Q1 2026</div>
+            <div class="timeline-dot"></div>
+            <h2 class="timeline-title">Cloud Security Suite</h2>
+            <p class="timeline-description">Suite completa para análisis de seguridad en entornos cloud.</p>
+            <ul class="timeline-features">
+              <li><i class="bx bx-check"></i> Soporte multi-cloud</li>
+              <li><i class="bx bx-check"></i> Análisis de configuraciones IaC</li>
+              <li><i class="bx bx-check"></i> Evaluación de compliance</li>
+              <li><i class="bx bx-check"></i> Monitorización en tiempo real</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <span class="logo-text">ART<span class="accent">ONE</span></span>
+            <span class="logo-subtitle">C&C Platform</span>
+          </div>
+          <p>Plataforma avanzada de Command & Control para profesionales de la ciberseguridad y pentesting.</p>
+          <div class="social-icons">
+            <a href="#"><i class="bx bxl-github"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-linkedin"></i></a>
+            <a href="#"><i class="bx bxl-discord-alt"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Enlaces rápidos</h3>
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/documentation.html">Documentación</a></li>
+            <li><a href="/tools.html">Herramientas</a></li>
+            <li><a href="/news.html">Noticias</a></li>
+            <li><a href="/community.html">Comunidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Recursos</h3>
+          <ul>
+            <li><a href="/tutorials.html">Tutoriales</a></li>
+            <li><a href="/api-docs.html">API</a></li>
+            <li><a href="/changelog.html">Changelog</a></li>
+            <li><a href="/roadmap.html">Roadmap</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="/terms.html">Términos de uso</a></li>
+            <li><a href="/privacy.html">Política de privacidad</a></li>
+            <li><a href="/license.html">Licencia</a></li>
+            <li><a href="/responsible-disclosure.html">Divulgación responsable</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Art One. Todos los derechos reservados.</p>
+        <p class="disclaimer">Art One debe utilizarse exclusivamente en entornos autorizados. No nos hacemos responsables del uso indebido de esta plataforma.</p>
+      </div>
+    </footer>
+  </body>
+</html>

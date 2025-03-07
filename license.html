@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Licencia | Art One - Plataforma C&C de Pentesting</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Información de licencia de Art One - Plataforma avanzada de Command & Control para pentesting y ciberseguridad." />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script defer src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <script type="module" src="script.js"></script>
+    <style>
+      .license-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+      
+      .license-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      
+      .license-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .license-header p {
+        color: var(--text-secondary);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .license-content {
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+      }
+      
+      .license-section {
+        margin-bottom: 3rem;
+      }
+      
+      .license-section:last-child {
+        margin-bottom: 0;
+      }
+      
+      .license-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        color: var(--accent-primary);
+        text-align: left;
+      }
+      
+      .license-section h3 {
+        font-size: 1.3rem;
+        margin: 2rem 0 1rem;
+        color: var(--text-primary);
+      }
+      
+      .license-section p {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+      
+      .license-section ul {
+        margin: 1rem 0 1.5rem 1.5rem;
+      }
+      
+      .license-section li {
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+      }
+      
+      .license-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+      }
+      
+      .license-table th,
+      .license-table td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+      }
+      
+      .license-table th {
+        background-color: var(--bg-tertiary);
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+      
+      .license-table td {
+        color: var(--text-secondary);
+      }
+      
+      .license-table tr:last-child td {
+        border-bottom: none;
+      }
+      
+      .license-notice {
+        background-color: rgba(0, 229, 255, 0.1);
+        border: 1px solid var(--accent-primary);
+        border-radius: 4px;
+        padding: 1.5rem;
+        margin: 2rem 0;
+      }
+      
+      .license-notice h4 {
+        color: var(--accent-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .license-notice i {
+        font-size: 1.5rem;
+      }
+      
+      .license-notice p {
+        color: var(--text-secondary);
+        margin-bottom: 0;
+      }
+      
+      .license-footer {
+        text-align: center;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+      }
+      
+      .license-footer p {
+        color: var(--text-tertiary);
+        font-size: 0.9rem;
+      }
+      
+      .license-footer a {
+        color: var(--accent-primary);
+      }
+      
+      @media (max-width: 768px) {
+        .license-container {
+          padding: 2rem 1rem;
+        }
+        
+        .license-header h1 {
+          font-size: 2rem;
+        }
+        
+        .license-content {
+          padding: 1.5rem;
+        }
+        
+        .license-section h2 {
+          font-size: 1.5rem;
+        }
+        
+        .license-table {
+          display: block;
+          overflow-x: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header x-data="{ mobileMenuOpen: false }">
+      <div class="logo-container">
+        <img src="source/logo_light.png" alt="Logo Art One" class="logo-image" />
+        <div class="logo">
+          <span class="logo-text">ART<span class="accent">ONE</span></span>
+        </div>
+      </div>
+      <button class="mobile-menu-button" @click="mobileMenuOpen = !mobileMenuOpen">
+        <i class="bx bx-menu"></i>
+      </button>
+      <nav :class="{'active': mobileMenuOpen}">
+        <a href="/"><i class="bx bx-home"></i> Inicio</a>
+        <a href="/documentation.html"><i class="bx bx-book-open"></i> Documentación</a>
+        <a href="/tools.html"><i class="bx bx-wrench"></i> Herramientas</a>
+        <a href="/news.html"><i class="bx bx-news"></i> Noticias</a>
+        <a href="/community.html"><i class="bx bx-group"></i> Comunidad</a>
+        <a href="/contact.html"><i class="bx bx-envelope"></i> Contacto</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="/login.html" class="login-btn">Iniciar Sesión</a>
+        <a href="/register.html" class="register-btn">Registrarse</a>
+      </div>
+    </header>
+
+    <main class="license-container">
+      <div class="license-header">
+        <h1>Información de <span class="accent">Licencia</span></h1>
+        <p>Detalles sobre los términos de licenciamiento y uso de Art One.</p>
+      </div>
+      
+      <div class="license-content">
+        <div class="license-section">
+          <h2>1. Tipos de licencia</h2>
+          <p>Art One ofrece diferentes tipos de licencias para adaptarse a las necesidades de distintos usuarios y organizaciones:</p>
+          
+          <table class="license-table">
+            <thead>
+              <tr>
+                <th>Tipo de licencia</th>
+                <th>Características</th>
+                <th>Uso permitido</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Community Edition</td>
+                <td>Funcionalidades básicas, uso personal</td>
+                <td>No comercial</td>
+              </tr>
+              <tr>
+                <td>Professional</td>
+                <td>Funcionalidades completas, soporte prioritario</td>
+                <td>Uso comercial individual</td>
+              </tr>
+              <tr>
+                <td>Enterprise</td>
+                <td>Características avanzadas, soporte 24/7</td>
+                <td>Uso comercial organizacional</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="license-section">
+          <h2>2. Términos de uso</h2>
+          <h3>2.1 Derechos otorgados</h3>
+          <p>La licencia de Art One te otorga los siguientes derechos:</p>
+          <ul>
+            <li>Instalar y utilizar el software según el tipo de licencia adquirida</li>
+            <li>Acceder a actualizaciones y parches de seguridad</li>
+            <li>Recibir soporte técnico según el nivel de licencia</li>
+            <li>Crear copias de seguridad del software</li>
+          </ul>
+          
+          <h3>2.2 Restricciones</h3>
+          <p>La licencia prohíbe expresamente:</p>
+          <ul>
+            <li>Redistribuir o revender el software sin autorización</li>
+            <li>Modificar o realizar ingeniería inversa del código</li>
+            <li>Eliminar o alterar los avisos de copyright</li>
+            <li>Utilizar el software para actividades ilegales</li>
+          </ul>
+        </div>
+        
+        <div class="license-section">
+          <h2>3. Componentes de terceros</h2>
+          <p>Art One incluye componentes de código abierto bajo las siguientes licencias:</p>
+          <ul>
+            <li>MIT License</li>
+            <li>Apache License 2.0</li>
+            <li>GNU General Public License v3</li>
+          </ul>
+          
+          <div class="license-notice">
+            <h4><i class="bx bx-info-circle"></i> Información importante</h4>
+            <p>Los componentes de terceros se distribuyen según sus respectivas licencias. Los detalles completos están disponibles en la documentación del software.</p>
+          </div>
+        </div>
+        
+        <div class="license-section">
+          <h2>4. Actualizaciones y soporte</h2>
+          <p>Las licencias activas tienen derecho a:</p>
+          <ul>
+            <li>Actualizaciones de seguridad y funcionalidad</li>
+            <li>Soporte técnico según el nivel de licencia</li>
+            <li>Acceso a recursos y documentación exclusiva</li>
+            <li>Participación en el programa de beta testing</li>
+          </ul>
+        </div>
+        
+        <div class="license-section">
+          <h2>5. Términos de renovación</h2>
+          <p>Las licencias se renuevan automáticamente bajo los siguientes términos:</p>
+          <ul>
+            <li>Renovación anual para licencias Professional y Enterprise</li>
+            <li>Notificación previa de 30 días antes de la renovación</li>
+            <li>Opción de cancelar la renovación automática</li>
+            <li>Período de gracia de 30 días después del vencimiento</li>
+          </ul>
+        </div>
+        
+        <div class="license-footer">
+          <p>Última actualización: Mayo 2025</p>
+          <p>Para consultas sobre licenciamiento, contacta con nuestro equipo comercial en <a href="mailto:sales@artone.com">sales@artone.com</a></p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <span class="logo-text">ART<span class="accent">ONE</span></span>
+            <span class="logo-subtitle">C&C Platform</span>
+          </div>
+          <p>Plataforma avanzada de Command & Control para profesionales de la ciberseguridad y pentesting.</p>
+          <div class="social-icons">
+            <a href="#"><i class="bx bxl-github"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-linkedin"></i></a>
+            <a href="#"><i class="bx bxl-discord-alt"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Enlaces rápidos</h3>
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/documentation.html">Documentación</a></li>
+            <li><a href="/tools.html">Herramientas</a></li>
+            <li><a href="/news.html">Noticias</a></li>
+            <li><a href="/community.html">Comunidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Recursos</h3>
+          <ul>
+            <li><a href="/tutorials.html">Tutoriales</a></li>
+            <li><a href="/api-docs.html">API</a></li>
+            <li><a href="/changelog.html">Changelog</a></li>
+            <li><a href="/roadmap.html">Roadmap</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="/terms.html">Términos de uso</a></li>
+            <li><a href="/privacy.html">Política de privacidad</a></li>
+            <li><a href="/license.html">Licencia</a></li>
+            <li><a href="/responsible-disclosure.html">Divulgación responsable</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Art One. Todos los derechos reservados.</p>
+        <p class="disclaimer">Art One debe utilizarse exclusivamente en entornos autorizados. No nos hacemos responsables del uso indebido de esta plataforma.</p>
+      </div>
+    </footer>
+  </body>
+</html>

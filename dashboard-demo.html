@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Demo del Panel de Control | Art One - Plataforma C&C de Pentesting</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Explora la demo del panel de control de Art One - Plataforma avanzada de Command & Control para pentesting y ciberseguridad." />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script defer src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <script type="module" src="script.js"></script>
+    <style>
+      .demo-container {
+        min-height: calc(100vh - var(--header-height));
+        padding: 2rem;
+        background-color: var(--bg-secondary);
+      }
+      
+      .demo-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      
+      .demo-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .demo-header p {
+        color: var(--text-secondary);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .demo-dashboard {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: 2rem;
+        background-color: var(--bg-primary);
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+      
+      .demo-sidebar {
+        background-color: var(--bg-secondary);
+        padding: 1.5rem;
+        border-right: 1px solid var(--border-color);
+      }
+      
+      .demo-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      .demo-nav a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        border-radius: 4px;
+        color: var(--text-secondary);
+        transition: all var(--transition-speed);
+        cursor: pointer;
+      }
+      
+      .demo-nav a:hover, .demo-nav a.active {
+        background-color: rgba(0, 229, 255, 0.1);
+        color: var(--accent-primary);
+      }
+      
+      .demo-nav i {
+        font-size: 1.2rem;
+      }
+      
+      .demo-content {
+        padding: 2rem;
+      }
+      
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      
+      .demo-card {
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+      }
+      
+      .demo-card h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        color: var(--text-secondary);
+      }
+      
+      .demo-card h3 i {
+        color: var(--accent-primary);
+      }
+      
+      .stat-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+      
+      .stat-label {
+        color: var(--text-tertiary);
+        font-size: 0.9rem;
+      }
+      
+      .demo-chart {
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+        margin-bottom: 1.5rem;
+      }
+      
+      .chart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      
+      .chart-title {
+        color: var(--text-secondary);
+        font-weight: 600;
+      }
+      
+      .chart-period {
+        display: flex;
+        gap: 0.5rem;
+      }
+      
+      .period-option {
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        background-color: var(--bg-tertiary);
+        color: var(--text-tertiary);
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all var(--transition-speed);
+      }
+      
+      .period-option:hover, .period-option.active {
+        background-color: rgba(0, 229, 255, 0.1);
+        color: var(--accent-primary);
+      }
+      
+      .chart-container {
+        height: 300px;
+        display: flex;
+        align-items: flex-end;
+        gap: 1rem;
+        padding: 1rem 0;
+      }
+      
+      .chart-bar {
+        flex: 1;
+        background-color: rgba(0, 229, 255, 0.2);
+        border-radius: 4px 4px 0 0;
+        transition: height 0.5s ease;
+      }
+      
+      .demo-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      
+      .demo-table th, .demo-table td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+      }
+      
+      .demo-table th {
+        color: var(--text-secondary);
+        font-weight: 600;
+      }
+      
+      .demo-table td {
+        color: var(--text-tertiary);
+      }
+      
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+      }
+      
+      .status-badge.online {
+        background-color: rgba(46, 213, 115, 0.1);
+        color: var(--success);
+      }
+      
+      .status-badge.offline {
+        background-color: rgba(255, 71, 87, 0.1);
+        color: var(--danger);
+      }
+      
+      .target-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+      
+      .target-card {
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+      }
+      
+      .target-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      
+      .target-status {
+        font-size: 0.9rem;
+      }
+      
+      .target-progress {
+        width: 100%;
+        height: 6px;
+        background-color: var(--bg-tertiary);
+        border-radius: 3px;
+        margin: 1rem 0;
+        overflow: hidden;
+      }
+      
+      .progress-bar {
+        height: 100%;
+        background-color: var(--accent-primary);
+        border-radius: 3px;
+      }
+      
+      .target-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        color: var(--text-tertiary);
+      }
+      
+      .vuln-severity {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+      }
+      
+      .severity-critical {
+        background-color: var(--danger);
+      }
+      
+      .severity-high {
+        background-color: #ff9f43;
+      }
+      
+      .severity-medium {
+        background-color: var(--warning);
+      }
+      
+      .severity-low {
+        background-color: var(--success);
+      }
+      
+      .exploit-card {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        margin-bottom: 1rem;
+      }
+      
+      .exploit-icon {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(0, 229, 255, 0.1);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--accent-primary);
+      }
+      
+      .exploit-info {
+        flex: 1;
+      }
+      
+      .exploit-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+      
+      .exploit-name {
+        font-weight: 600;
+      }
+      
+      .exploit-meta {
+        font-size: 0.9rem;
+        color: var(--text-tertiary);
+      }
+      
+      .settings-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+      
+      .settings-card {
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+      }
+      
+      .settings-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .settings-icon {
+        width: 40px;
+        height: 40px;
+        background-color: rgba(0, 229, 255, 0.1);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: var(--accent-primary);
+      }
+      
+      .settings-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      .form-group label {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+      
+      .form-group input,
+      .form-group select {
+        padding: 0.75rem;
+        background-color: var(--bg-tertiary);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        color: var(--text-primary);
+      }
+      
+      .save-btn {
+        padding: 0.75rem;
+        background-color: var(--accent-primary);
+        color: var(--bg-primary);
+        border: none;
+        border-radius: 4px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all var(--transition-speed);
+      }
+      
+      .save-btn:hover {
+        background-color: var(--accent-secondary);
+      }
+      
+      @media (max-width: 1024px) {
+        .demo-dashboard {
+          grid-template-columns: 1fr;
+        }
+        
+        .demo-sidebar {
+          border-right: none;
+          border-bottom: 1px solid var(--border-color);
+        }
+        
+        .demo-nav {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .demo-container {
+          padding: 1rem;
+        }
+        
+        .demo-header h1 {
+          font-size: 2rem;
+        }
+        
+        .demo-content {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header x-data="{ mobileMenuOpen: false }">
+      <div class="logo-container">
+        <img src="source/logo_light.png" alt="Logo Art One" class="logo-image" />
+        <div class="logo">
+          <span class="logo-text">ART<span class="accent">ONE</span></span>
+        </div>
+      </div>
+      <button class="mobile-menu-button" @click="mobileMenuOpen = !mobileMenuOpen">
+        <i class="bx bx-menu"></i>
+      </button>
+      <nav :class="{'active': mobileMenuOpen}">
+        <a href="/"><i class="bx bx-home"></i> Inicio</a>
+        <a href="/documentation.html"><i class="bx bx-book-open"></i> Documentación</a>
+        <a href="/tools.html"><i class="bx bx-wrench"></i> Herramientas</a>
+        <a href="/news.html"><i class="bx bx-news"></i> Noticias</a>
+        <a href="/community.html"><i class="bx bx-group"></i> Comunidad</a>
+        <a href="/contact.html"><i class="bx bx-envelope"></i> Contacto</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="/login.html" class="login-btn">Iniciar Sesión</a>
+        <a href="/register.html" class="register-btn">Registrarse</a>
+      </div>
+    </header>
+
+    <main class="demo-container" x-data="{ activeSection: 'dashboard' }">
+      <div class="demo-header">
+        <h1>Panel de <span class="accent">Control</span></h1>
+        <p>Explora una versión demo de nuestro panel de control y descubre cómo Art One puede ayudarte a gestionar tus operaciones de pentesting de manera eficiente.</p>
+      </div>
+      
+      <div class="demo-dashboard">
+        <aside class="demo-sidebar">
+          <nav class="demo-nav">
+            <a @click="activeSection = 'dashboard'" :class="{ 'active': activeSection === 'dashboard' }">
+              <i class="bx bx-grid-alt"></i> Dashboard
+            </a>
+            <a @click="activeSection = 'targets'" :class="{ 'active': activeSection === 'targets' }">
+              <i class="bx bx-target-lock"></i> Objetivos
+            </a>
+            <a @click="activeSection = 'agents'" :class="{ 'active': activeSection === 'agents' }">
+              <i class="bx bx-server"></i> Agentes
+            </a>
+            <a @click="activeSection = 'vulnerabilities'" :class="{ 'active': activeSection === 'vulnerabilities' }">
+              <i class="bx bx-shield-quarter"></i> Vulnerabilidades
+            </a>
+            <a @click="activeSection = 'exploits'" :class="{ 'active': activeSection === 'exploits' }">
+              <i class="bx bx-code-block"></i> Exploits
+            </a>
+            <a @click="activeSection = 'data'" :class="{ 'active': activeSection === 'data' }">
+              <i class="bx bx-data"></i> Datos
+            </a>
+            <a @click="activeSection = 'reports'" :class="{ 'active': activeSection === 'reports' }">
+              <i class="bx bx-file"></i> Informes
+            </a>
+            <a @click="activeSection = 'settings'" :class="{ 'active': activeSection === 'settings' }">
+              <i class="bx bx-cog"></i> Configuración
+            </a>
+          </nav>
+        </aside>
+        
+        <div class="demo-content">
+          <!-- Dashboard Section -->
+          <div x-show="activeSection === 'dashboard'">
+            <div class="demo-grid">
+              <div class="demo-card">
+                <h3><i class="bx bx-target-lock"></i> Objetivos activos</h3>
+                <div class="stat-value">12</div>
+                <div class="stat-label">En monitorización</div>
+              </div>
+              
+              <div class="demo-card">
+                <h3><i class="bx bx-server"></i> Agentes conectados</h3>
+                <div class="stat-value">8/10</div>
+                <div class="stat-label">Activos actualmente</div>
+              </div>
+              
+              <div class="demo-card">
+                <h3><i class="bx bx-shield-quarter"></i> Vulnerabilidades</h3>
+                <div class="stat-value">47</div>
+                <div class="stat-label">Detectadas este mes</div>
+              </div>
+              
+              <div class="demo-card">
+                <h3><i class="bx bx-file"></i> Informes</h3>
+                <div class="stat-value">15</div>
+                <div class="stat-label">Generados esta semana</div>
+              </div>
+            </div>
+            
+            <div class="demo-chart">
+              <div class="chart-header">
+                <div class="chart-title">Actividad de vulnerabilidades</div>
+                <div class="chart-period">
+                  <div class="period-option">Día</div>
+                  <div class="period-option active">Semana</div>
+                  <div class="period-option">Mes</div>
+                </div>
+              </div>
+              <div class="chart-container">
+                <div class="chart-bar" style="height: 60%"></div>
+                <div class="chart-bar" style="height: 80%"></div>
+                <div class="chart-bar" style="height: 40%"></div>
+                <div class="chart-bar" style="height: 70%"></div>
+                <div class="chart-bar" style="height: 90%"></div>
+                <div class="chart-bar" style="height: 50%"></div>
+                <div class="chart-bar" style="height: 65%"></div>
+              </div>
+            </div>
+            
+            <div class="demo-card">
+              <h3><i class="bx bx-server"></i> Estado de los agentes</h3>
+              <table class="demo-table">
+                <thead>
+                  <tr>
+                    <th>ID Agente</th>
+                    <th>Ubicación</th>
+                    <th>Estado</th>
+                    <th>Última actividad</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>AGT-001</td>
+                    <td>Server-01</td>
+                    <td><span class="status-badge online">Online</span></td>
+                    <td>Hace 5 minutos</td>
+                  </tr>
+                  <tr>
+                    <td>AGT-002</td>
+                    <td>Server-02</td>
+                    <td><span class="status-badge online">Online</span></td>
+                    <td>Hace 12 minutos</td>
+                  </tr>
+                  <tr>
+                    <td>AGT-003</td>
+                    <td>Server-03</td>
+                    <td><span class="status-badge offline">Offline</span></td>
+                    <td>Hace 2 horas</td>
+                  </tr>
+                  <tr>
+                    <td>AGT-004</td>
+                    <td>Server-04</td>
+                    <td><span class="status-badge online">Online</span></td>
+                    <td>Hace 8 minutos</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Targets Section -->
+          <div x-show="activeSection === 'targets'">
+            <div class="target-list">
+              <div class="target-card">
+                <div class="target-header">
+                  <h3>server1.target.com</h3>
+                  <span class="target-status status-badge online">Activo</span>
+                </div>
+                <p class="target-description">Servidor web principal</p>
+                <div class="target-progress">
+                  <div class="progress-bar" style="width: 75%"></div>
+                </div>
+                <div class="target-meta">
+                  <span>Progreso: 75%</span>
+                  <span>Vulnerabilidades: 8</span>
+                </div>
+              </div>
+              
+              <div class="target-card">
+                <div class="target-header">
+                  <h3>api.target.com</h3>
+                  <span class="target-status status-badge online">Activo</span>
+                </div>
+                <p class="target-description">API REST principal</p>
+                <div class="target-progress">
+                  <div class="progress-bar" style="width: 45%"></div>
+                </div>
+                <div class="target-meta">
+                  <span>Progreso: 45%</span>
+                  <span>Vulnerabilidades: 5</span>
+                </div>
+              </div>
+              
+              <div class="target-card">
+                <div class="target-header">
+                  <h3>db.target.com</h3>
+                  <span class="target-status status-badge online">Activo</span>
+                </div>
+                <p class="target-description">Servidor de base de datos</p>
+                <div class="target-progress">
+                  <div class="progress-bar" style="width: 60%"></div>
+                </div>
+                <div class="target-meta">
+                  <span>Progreso: 60%</span>
+                  <span>Vulnerabilidades: 12</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Agents Section -->
+          <div x-show="activeSection === 'agents'">
+            <div class="demo-card">
+              <h3><i class="bx bx-server"></i> Agentes Desplegados</h3>
+              <table class="demo-table">
+                <thead>
+                  <tr>
+                    <th>ID Agente</th>
+                    <th>Tipo</th>
+                    <th>Sistema</th>
+                    <th>Estado</th>
+                    <th>Última conexión</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>AGT-001</td>
+                    <td>Persistente</td>
+                    <td>Linux x64</td>
+                    <td><span class="status-badge online">Online</span></td>
+                    <td>Hace 5 minutos</td>
+                  </tr>
+                  <tr>
+                    <td>AGT-002</td>
+                    <td>Temporal</td>
+                    <td>Windows x64</td>
+                    <td><span class="status-badge online">Online</span></td>
+                    <td>Hace 12 minutos</td>
+                  </tr>
+                  <tr>
+                    <td>AGT-003</td>
+                    <td>Persistente</td>
+                    <td>Linux x64</td>
+                    <td><span class="status-badge offline">Offline</span></td>
+                    <td>Hace 2 horas</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Vulnerabilities Section -->
+          <div x-show="activeSection === 'vulnerabilities'">
+            <div class="demo-card">
+              <h3><i class="bx bx-shield-quarter"></i> Vulnerabilidades Detectadas</h3>
+              <table class="demo-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Severidad</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                    <th>Detectado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>VUL-001</td>
+                    <td><span class="vuln-severity severity-critical"></span>Crítica</td>
+                    <td>SQL Injection en login</td>
+                    <td>Abierta</td>
+                    <td>Hace 2 días</td>
+                  </tr>
+                  <tr>
+                    <td>VUL-002</td>
+                    <td><span class="vuln-severity severity-high"></span>Alta</td>
+                    <td>XSS Persistente</td>
+                    <td>En revisión</td>
+                    <td>Hace 3 días</td>
+                  </tr>
+                  <tr>
+                    <td>VUL-003</td>
+                    <td><span class="vuln-severity severity-medium"></span>Media</td>
+                    <td>CSRF en formulario</td>
+                    <td>Abierta</td>
+                    <td>Hace 4 días</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Exploits Section -->
+          <div x-show="activeSection === 'exploits'">
+            <div class="exploit-card">
+              <div class="exploit-icon">
+                <i class="bx bx-code-alt"></i>
+              </div>
+              <div class="exploit-info">
+                <div class="exploit-header">
+                  <span class="exploit-name">SQL Injection Automático</span>
+                  <span class="status-badge online">Activo</span>
+                </div>
+                <p class="exploit-description">Exploit automatizado para SQLi en aplicaciones web</p>
+                <div class="exploit-meta">
+                  <span>Versión: 2.1.0</span> • <span>Éxitos: 15</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="exploit-card">
+              <div class="exploit-icon">
+                <i class="bx bx-code-alt"></i>
+              </div>
+              <div class="exploit-info">
+                <div class="exploit-header">
+                  <span class="exploit-name">RCE Windows</span>
+                  <span class="status-badge online">Activo</span>
+                </div>
+                <p class="exploit-description">Exploit para ejecución remota de código en Windows</p>
+                <div class="exploit-meta">
+                  <span>Versión: 1.5.2</span> • <span>Éxitos: 8</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Data Section -->
+          <div x-show="activeSection === 'data'">
+            <div class="demo-card">
+              <h3><i class="bx bx-data"></i> Datos Recolectados</h3>
+              <table class="demo-table">
+                <thead>
+                  <tr>
+                    <th>Tipo</th>
+                    <th>Tamaño</th>
+                    <th>Origen</th>
+                    <th>Fecha</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Credenciales</td>
+                    <td>2.5 MB</td>
+                    <td>server1.target.com</td>
+                    <td>15/05/2025</td>
+                  </tr>
+                  <tr>
+                    <td>Logs</td>
+                    <td>150 MB</td>
+                    <td>api.target.com</td>
+                    <td>14/05/2025</td>
+                  </tr>
+                  <tr>
+                    <td>Configuración</td>
+                    <td>1.2 MB</td>
+                    <td>db.target.com</td>
+                    <td>13/05/2025</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Reports Section -->
+          <div x-show="activeSection === 'reports'">
+            <div class="demo-card">
+              <h3><i class="bx bx-file"></i> Informes Generados</h3>
+              <table class="demo-table">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Informe Ejecutivo Q2</td>
+                    <td>Ejecutivo</td>
+                    <td><span class="status-badge online">Completado</span></td>
+                    <td>15/05/2025</td>
+                  </tr>
+                  <tr>
+                    <td>Análisis Técnico</td>
+                    <td>Técnico</td>
+                    <td><span class="status-badge online">Completado</span></td>
+                    <td>14/05/2025</td>
+                  </tr>
+                  <tr>
+                    <td>Reporte de Vulnerabilidades</td>
+                    <td>Detallado</td>
+                    <td><span class="status-badge offline">En progreso</span></td>
+                    <td>13/05/2025</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Settings Section -->
+          <div x-show="activeSection === 'settings'">
+            <div class="settings-grid">
+              <div class=" ```html
+              <div class="settings-grid">
+                <div class="settings-card">
+                  <div class="settings-header">
+                    <div class="settings-icon">
+                      <i class="bx bx-user"></i>
+                    </div>
+                    <h3>Perfil de Usuario</h3>
+                  </div>
+                  <div class="settings-form">
+                    <div class="form-group">
+                      <label>Nombre</label>
+                      <input type="text" value="Admin" />
+                    </div>
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input type="email" value="admin@artone.com" />
+                    </div>
+                    <button class="save-btn">Guardar cambios</button>
+                  </div>
+                </div>
+                
+                <div class="settings-card">
+                  <div class="settings-header">
+                    <div class="settings-icon">
+                      <i class="bx bx-bell"></i>
+                    </div>
+                    <h3>Notificaciones</h3>
+                  </div>
+                  <div class="settings-form">
+                    <div class="form-group">
+                      <label>Email de alertas</label>
+                      <input type="email" value="alerts@artone.com" />
+                    </div>
+                    <div class="form-group">
+                      <label>Nivel de alertas</label>
+                      <select>
+                        <option>Todas</option>
+                        <option>Solo críticas</option>
+                        <option>Personalizadas</option>
+                      </select>
+                    </div>
+                    <button class="save-btn">Guardar cambios</button>
+                  </div>
+                </div>
+                
+                <div class="settings-card">
+                  <div class="settings-header">
+                    <div class="settings-icon">
+                      <i class="bx bx-shield"></i>
+                    </div>
+                    <h3>Seguridad</h3>
+                  </div>
+                  <div class="settings-form">
+                    <div class="form-group">
+                      <label>Contraseña actual</label>
+                      <input type="password" />
+                    </div>
+                    <div class="form-group">
+                      <label>Nueva contraseña</label>
+                      <input type="password" />
+                    </div>
+                    <div class="form-group">
+                      <label>Confirmar contraseña</label>
+                      <input type="password" />
+                    </div>
+                    <button class="save-btn">Actualizar contraseña</button>
+                  </div>
+                </div>
+                
+                <div class="settings-card">
+                  <div class="settings-header">
+                    <div class="settings-icon">
+                      <i class="bx bx-slider"></i>
+                    </div>
+                    <h3>Preferencias</h3>
+                  </div>
+                  <div class="settings-form">
+                    <div class="form-group">
+                      <label>Zona horaria</label>
+                      <select>
+                        <option>UTC+01:00 Madrid</option>
+                        <option>UTC+00:00 Londres</option>
+                        <option>UTC-05:00 Nueva York</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Idioma</label>
+                      <select>
+                        <option>Español</option>
+                        <option>English</option>
+                        <option>Français</option>
+                      </select>
+                    </div>
+                    <button class="save-btn">Guardar cambios</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <span class="logo-text">ART<span class="accent">ONE</span></span>
+            <span class="logo-subtitle">C&C Platform</span>
+          </div>
+          <p>Plataforma avanzada de Command & Control para profesionales de la ciberseguridad y pentesting.</p>
+          <div class="social-icons">
+            <a href="#"><i class="bx bxl-github"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-linkedin"></i></a>
+            <a href="#"><i class="bx bxl-discord-alt"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Enlaces rápidos</h3>
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/documentation.html">Documentación</a></li>
+            <li><a href="/tools.html">Herramientas</a></li>
+            <li><a href="/news.html">Noticias</a></li>
+            <li><a href="/community.html">Comunidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Recursos</h3>
+          <ul>
+            <li><a href="/tutorials.html">Tutoriales</a></li>
+            <li><a href="/api-docs.html">API</a></li>
+            <li><a href="/changelog.html">Changelog</a></li>
+            <li><a href="/roadmap.html">Roadmap</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="/terms.html">Términos de uso</a></li>
+            <li><a href="/privacy.html">Política de privacidad</a></li>
+            <li><a href="/license.html">Licencia</a></li>
+            <li><a href="/responsible-disclosure.html">Divulgación responsable</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Art One. Todos los derechos reservados.</p>
+        <p class="disclaimer">Art One debe utilizarse exclusivamente en entornos autorizados. No nos hacemos responsables del uso indebido de esta plataforma.</p>
+      </div>
+    </footer>
+  </body>
+</html>

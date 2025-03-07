@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Changelog | Art One - Plataforma C&C de Pentesting</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Historial de cambios y actualizaciones de Art One - Plataforma avanzada de Command & Control para pentesting y ciberseguridad." />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script defer src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <script type="module" src="script.js"></script>
+    <style>
+      .changelog-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+
+      .changelog-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .changelog-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .changelog-header p {
+        color: var(--text-secondary);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .version-filter {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 3rem;
+      }
+
+      .version-btn {
+        padding: 0.5rem 1.5rem;
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: all var(--transition-speed);
+      }
+
+      .version-btn:hover, .version-btn.active {
+        background-color: rgba(0, 229, 255, 0.1);
+        color: var(--accent-primary);
+        border-color: var(--accent-primary);
+      }
+
+      .changelog-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .version-block {
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        overflow: hidden;
+      }
+
+      .version-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .version-number {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent-primary);
+      }
+
+      .version-date {
+        color: var(--text-tertiary);
+        font-size: 0.9rem;
+      }
+
+      .version-content {
+        padding: 1.5rem;
+      }
+
+      .change-category {
+        margin-bottom: 2rem;
+      }
+
+      .change-category:last-child {
+        margin-bottom: 0;
+      }
+
+      .category-title {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+      }
+
+      .category-title i {
+        color: var(--accent-primary);
+      }
+
+      .change-list {
+        list-style: none;
+      }
+
+      .change-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-secondary);
+      }
+
+      .change-item i {
+        color: var(--accent-primary);
+        font-size: 1.2rem;
+        margin-top: 0.2rem;
+      }
+
+      .change-tag {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin-left: 0.5rem;
+      }
+
+      .change-tag.new {
+        background-color: rgba(46, 213, 115, 0.1);
+        color: var(--success);
+      }
+
+      .change-tag.fix {
+        background-color: rgba(255, 71, 87, 0.1);
+        color: var(--danger);
+      }
+
+      .change-tag.improvement {
+        background-color: rgba(0, 229, 255, 0.1);
+        color: var(--accent-primary);
+      }
+
+      .load-more {
+        display: block;
+        width: fit-content;
+        margin: 3rem auto 0;
+        padding: 0.75rem 2rem;
+        background-color: transparent;
+        border: 1px solid var(--accent-primary);
+        color: var(--accent-primary);
+        border-radius: 4px;
+        font-weight: 500;
+        transition: all var(--transition-speed);
+      }
+
+      .load-more:hover {
+        background-color: rgba(0, 229, 255, 0.1);
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 768px) {
+        .changelog-container {
+          padding: 2rem 1rem;
+        }
+
+        .changelog-header h1 {
+          font-size: 2rem;
+        }
+
+        .version-filter {
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header x-data="{ mobileMenuOpen: false }">
+      <div class="logo-container">
+        <div class="logo">
+          <span class="logo-text">ART<span class="accent">ONE</span></span>
+          <span class="logo-subtitle">C&C Platform</span>
+        </div>
+      </div>
+      <button class="mobile-menu-button" @click="mobileMenuOpen = !mobileMenuOpen">
+        <i class="bx bx-menu"></i>
+      </button>
+      <nav :class="{'active': mobileMenuOpen}">
+        <a href="/"><i class="bx bx-home"></i> Inicio</a>
+        <a href="/documentation.html"><i class="bx bx-book-open"></i> Documentación</a>
+        <a href="/tools.html"><i class="bx bx-wrench"></i> Herramientas</a>
+        <a href="/news.html"><i class="bx bx-news"></i> Noticias</a>
+        <a href="/community.html"><i class="bx bx-group"></i> Comunidad</a>
+        <a href="/contact.html"><i class="bx bx-envelope"></i> Contacto</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="/login.html" class="login-btn">Iniciar Sesión</a>
+        <a href="/register.html" class="register-btn">Registrarse</a>
+      </div>
+    </header>
+
+    <main class="changelog-container">
+      <div class="changelog-header">
+        <h1>Historial de <span class="accent">Cambios</span></h1>
+        <p>Mantente al día con todas las actualizaciones y mejoras realizadas en Art One. Documentamos cada cambio para que puedas aprovechar al máximo las nuevas características.</p>
+      </div>
+
+      <div class="version-filter">
+        <button class="version-btn active">Todas las versiones</button>
+        <button class="version-btn">v3.x</button>
+        <button class="version-btn">v2.x</button>
+        <button class="version-btn">v1.x</button>
+      </div>
+
+      <div class="changelog-list">
+        <div class="version-block">
+          <div class="version-header">
+            <span class="version-number">v3.5.0</span>
+            <span class="version-date">15 Mayo 2025</span>
+          </div>
+          <div class="version-content">
+            <div class="change-category">
+              <h3 class="category-title">
+                <i class="bx bx-plus-circle"></i>
+                Nuevas características
+              </h3>
+              <ul class="change-list">
+                <li class="change-item">
+                  <i class="bx bx-check"></i>
+                  <span>Nuevo motor de escaneo con mejor rendimiento y precisión <span class="change-tag new">Nuevo</span></span>
+                </li>
+                <li class="change-item">
+                  <i class="bx bx-check"></i>
+                  <span>Módulos adicionales de explotación para vulnerabilidades recientes <span class="change-tag new">Nuevo</span></span>
+                </li>
+                <li class="change-item">
+                  <i class="bx bx-check"></i>
+                  <span>Interfaz de usuario renovada con mejor usabilidad <span class="change-tag new">Nuevo</span></span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="change-category">
+              <h3 class="category-title">
+                <i class="bx bx-trending-up"></i>
+                Mejoras
+              </h3>
+              <ul class="change-list">
+                <li class="change-item">
+                  <i class="bx bx-check"></i>
+                  <span>Optimización del rendimiento general <span class="change-tag improvement">Mejora</span></span>
+                </li>
+                <li class="change-item">
+                  <i class="bx bx-check"></i>
+                  <span>Mejor gestión de memoria en escaneos grandes <span class="change-tag improvement">Mejora</span></span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="change-category">
+              <h3 class="category-title">
+                <i class="bx bx-bug"></i>
+                Correcciones
+              </h3>
+              <ul class="change-list">
+                <li class="change-item">
+                  <i class="bx bx-check"></i>
+                  <span>Solucionado problema de conexión con agentes remotos <span class="change-tag fix">Fix</span></span>
+                </li>
+                <li class="change-item">
+                  <i class="bx bx-check"></i>
+                  <span>Corregido error en la generación de informes PDF <span class="change-tag fix">Fix</span></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="version-block">
+          <div class="version-header">
+            <span class="version-number">v3.4.2</span>
+            <span class="version-date">1 Mayo 2025</span>
+          </div>
+          <div class="version-content">
+            <div class="change-category">
+              <h3 class="category-title">
+                <i class="bx bx-trending-up"></i>
+                Mejoras
+              </h3>
+              <ul class="change-list">
+                <li class="change-item">
+                  <i class="bx bx-check"></i>
+                  <span>Actualización de la base de datos de vulnerabilidades <span class="change-tag improvement">Mejora</span></span>
+                </li>
+                <li class="change-item">
+                  <i class="bx bx-check"></i>
+                  <span>Mejoras en la detección de falsos positivos <span class="change-tag improvement">Mejora</span></span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="change-category">
+              <h3 class="category-title">
+                <i class="bx bx-bug"></i>
+                Correcciones
+              </h3>
+              <ul class="change-list">
+                <li class="change-item">
+                  <i class="bx bx-check"></i>
+                  <span>Solucionado problema de memoria en escaneos prolongados <span class="change-tag fix">Fix</span></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="load-more">Cargar más versiones</button>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <span class="logo-text">ART<span class="accent">ONE</span></span>
+            <span class="logo-subtitle">C&C Platform</span>
+          </div>
+          <p>Plataforma avanzada de Command & Control para profesionales de la ciberseguridad y pentesting.</p>
+          <div class="social-icons">
+            <a href="#"><i class="bx bxl-github"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-linkedin"></i></a>
+            <a href="#"><i class="bx bxl-discord-alt"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Enlaces rápidos</h3>
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/documentation.html">Documentación</a></li>
+            <li><a href="/tools.html">Herramientas</a></li>
+            <li><a href="/news.html">Noticias</a></li>
+            <li><a href="/community.html">Comunidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Recursos</h3>
+          <ul>
+            <li><a href="/tutorials.html">Tutoriales</a></li>
+            <li><a href="/api-docs.html">API</a></li>
+            <li><a href="/changelog.html">Changelog</a></li>
+            <li><a href="/roadmap.html">Roadmap</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="/terms.html">Términos de uso</a></li>
+            <li><a href="/privacy.html">Política de privacidad</a></li>
+            <li><a href="/license.html">Licencia</a></li>
+            <li><a href="/responsible-disclosure.html">Divulgación responsable</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Art One. Todos los derechos reservados.</p>
+        <p class="disclaimer">Art One debe utilizarse exclusivamente en entornos autorizados. No nos hacemos responsables del uso indebido de esta plataforma.</p>
+      </div>
+    </footer>
+  </body>
+</html>

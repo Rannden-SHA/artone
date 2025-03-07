@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Términos de Uso | Art One - Plataforma C&C de Pentesting</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Términos y condiciones de uso de Art One - Plataforma avanzada de Command & Control para pentesting y ciberseguridad." />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script defer src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <script type="module" src="script.js"></script>
+    <style>
+      .terms-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+      
+      .terms-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      
+      .terms-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .terms-header p {
+        color: var(--text-secondary);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .terms-content {
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+      }
+      
+      .terms-section {
+        margin-bottom: 3rem;
+      }
+      
+      .terms-section:last-child {
+        margin-bottom: 0;
+      }
+      
+      .terms-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        color: var(--accent-primary);
+        text-align: left;
+      }
+      
+      .terms-section h3 {
+        font-size: 1.3rem;
+        margin: 2rem 0 1rem;
+        color: var(--text-primary);
+      }
+      
+      .terms-section p {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+      
+      .terms-section ul {
+        margin: 1rem 0 1.5rem 1.5rem;
+      }
+      
+      .terms-section li {
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+      }
+      
+      .terms-section strong {
+        color: var(--text-primary);
+      }
+      
+      .terms-warning {
+        background-color: rgba(255, 71, 87, 0.1);
+        border: 1px solid var(--danger);
+        border-radius: 4px;
+        padding: 1.5rem;
+        margin: 2rem 0;
+      }
+      
+      .terms-warning h4 {
+        color: var(--danger);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .terms-warning i {
+        font-size: 1.5rem;
+      }
+      
+      .terms-warning p {
+        color: var(--text-secondary);
+        margin-bottom: 0;
+      }
+      
+      .terms-footer {
+        text-align: center;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+      }
+      
+      .terms-footer p {
+        color: var(--text-tertiary);
+        font-size: 0.9rem;
+      }
+      
+      .terms-footer a {
+        color: var(--accent-primary);
+      }
+      
+      @media (max-width: 768px) {
+        .terms-container {
+          padding: 2rem 1rem;
+        }
+        
+        .terms-header h1 {
+          font-size: 2rem;
+        }
+        
+        .terms-content {
+          padding: 1.5rem;
+        }
+        
+        .terms-section h2 {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header x-data="{ mobileMenuOpen: false }">
+      <div class="logo-container">
+        <img src="source/logo_light.png" alt="Logo Art One" class="logo-image" />
+        <div class="logo">
+          <span class="logo-text">ART<span class="accent">ONE</span></span>
+        </div>
+      </div>
+      <button class="mobile-menu-button" @click="mobileMenuOpen = !mobileMenuOpen">
+        <i class="bx bx-menu"></i>
+      </button>
+      <nav :class="{'active': mobileMenuOpen}">
+        <a href="/"><i class="bx bx-home"></i> Inicio</a>
+        <a href="/documentation.html"><i class="bx bx-book-open"></i> Documentación</a>
+        <a href="/tools.html"><i class="bx bx-wrench"></i> Herramientas</a>
+        <a href="/news.html"><i class="bx bx-news"></i> Noticias</a>
+        <a href="/community.html"><i class="bx bx-group"></i> Comunidad</a>
+        <a href="/contact.html"><i class="bx bx-envelope"></i> Contacto</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="/login.html" class="login-btn">Iniciar Sesión</a>
+        <a href="/register.html" class="register-btn">Registrarse</a>
+      </div>
+    </header>
+
+    <main class="terms-container">
+      <div class="terms-header">
+        <h1>Términos de <span class="accent">Uso</span></h1>
+        <p>Por favor, lee detenidamente estos términos y condiciones antes de utilizar Art One.</p>
+      </div>
+      
+      <div class="terms-content">
+        <div class="terms-section">
+          <h2>1. Aceptación de los términos</h2>
+          <p>Al acceder y utilizar Art One, aceptas estar legalmente vinculado por estos términos y condiciones. Si no estás de acuerdo con alguno de estos términos, no debes utilizar nuestra plataforma.</p>
+        </div>
+        
+        <div class="terms-section">
+          <h2>2. Uso autorizado</h2>
+          <p>Art One es una plataforma diseñada exclusivamente para profesionales de la ciberseguridad y debe utilizarse únicamente en entornos autorizados. Al utilizar nuestros servicios, te comprometes a:</p>
+          <ul>
+            <li>Utilizar la plataforma solo en sistemas y redes para los que tengas autorización explícita.</li>
+            <li>No realizar pruebas de penetración en infraestructuras sin el consentimiento previo.</li>
+            <li>Mantener la confidencialidad de la información obtenida durante las pruebas.</li>
+            <li>Cumplir con todas las leyes y regulaciones aplicables en tu jurisdicción.</li>
+          </ul>
+          
+          <div class="terms-warning">
+            <h4><i class="bx bx-error-circle"></i> Advertencia importante</h4>
+            <p>El uso de Art One para actividades maliciosas o no autorizadas está estrictamente prohibido y puede resultar en acciones legales.</p>
+          </div>
+        </div>
+        
+        <div class="terms-section">
+          <h2>3. Cuenta de usuario</h2>
+          <h3>3.1 Registro</h3>
+          <p>Para utilizar Art One, debes crear una cuenta proporcionando información precisa y completa. Eres responsable de mantener la confidencialidad de tu cuenta y contraseña.</p>
+          
+          <h3>3.2 Seguridad</h3>
+          <p>Te comprometes a notificarnos inmediatamente cualquier uso no autorizado de tu cuenta o cualquier otra violación de seguridad.</p>
+        </div>
+        
+        <div class="terms-section">
+          <h2>4. Propiedad intelectual</h2>
+          <p>Todo el contenido disponible en Art One, incluyendo pero no limitado a texto, gráficos, logotipos, iconos, imágenes, clips de audio, descargas digitales y software, es propiedad de Art One o sus licenciantes y está protegido por leyes de propiedad intelectual.</p>
+        </div>
+        
+        <div class="terms-section">
+          <h2>5. Limitación de responsabilidad</h2>
+          <p>Art One se proporciona "tal cual" y "según disponibilidad". No ofrecemos garantías de ningún tipo, expresas o implícitas. No nos hacemos responsables de:</p>
+          <ul>
+            <li>Daños directos, indirectos, incidentales o consecuentes.</li>
+            <li>Pérdida de datos o interrupción del servicio.</li>
+            <li>Uso indebido de la plataforma o sus herramientas.</li>
+            <li>Acciones realizadas por los usuarios en sistemas no autorizados.</li>
+          </ul>
+        </div>
+        
+        <div class="terms-section">
+          <h2>6. Modificaciones</h2>
+          <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación en la plataforma. El uso continuado de Art One después de dichos cambios constituye tu aceptación de los nuevos términos.</p>
+        </div>
+        
+        <div class="terms-footer">
+          <p>Última actualización: Mayo 2025</p>
+          <p>Para cualquier consulta sobre estos términos, contacta con nuestro equipo legal en <a href="mailto:legal@artone.com">legal@artone.com</a></p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <span class="logo-text">ART<span class="accent">ONE</span></span>
+            <span class="logo-subtitle">C&C Platform</span>
+          </div>
+          <p>Plataforma avanzada de Command & Control para profesionales de la ciberseguridad y pentesting.</p>
+          <div class="social-icons">
+            <a href="#"><i class="bx bxl-github"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-linkedin"></i></a>
+            <a href="#"><i class="bx bxl-discord-alt"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Enlaces rápidos</h3>
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/documentation.html">Documentación</a></li>
+            <li><a href="/tools.html">Herramientas</a></li>
+            <li><a href="/news.html">Noticias</a></li>
+            <li><a href="/community.html">Comunidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Recursos</h3>
+          <ul>
+            <li><a href="/tutorials.html">Tutoriales</a></li>
+            <li><a href="/api-docs.html">API</a></li>
+            <li><a href="/changelog.html">Changelog</a></li>
+            <li><a href="/roadmap.html">Roadmap</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="/terms.html">Términos de uso</a></li>
+            <li><a href="/privacy.html">Política de privacidad</a></li>
+            <li><a href="/license.html">Licencia</a></li>
+            <li><a href="/responsible-disclosure.html">Divulgación responsable</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Art One. Todos los derechos reservados.</p>
+        <p class="disclaimer">Art One debe utilizarse exclusivamente en entornos autorizados. No nos hacemos responsables del uso indebido de esta plataforma.</p>
+      </div>
+    </footer>
+  </body>
+</html>

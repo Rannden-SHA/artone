@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Herramientas | Art One - Plataforma C&C de Pentesting</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Herramientas integradas en Art One - Plataforma avanzada de Command & Control para pentesting y ciberseguridad."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <script defer src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <script type="module" src="script.js"></script>
+    <style>
+      .tools-header {
+        background-color: var(--bg-secondary);
+        padding: 4rem 2rem;
+        text-align: center;
+      }
+      .tools-header h1 {
+        margin-bottom: 1.5rem;
+      }
+      .tools-header p {
+        max-width: 800px;
+        margin: 0 auto 2rem;
+        color: var(--text-secondary);
+      }
+      .tools-filter {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        margin-top: -2rem;
+        position: relative;
+        z-index: 10;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--border-color);
+      }
+      .filter-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      .filter-option {
+        padding: 0.5rem 1rem;
+        background-color: var(--bg-tertiary);
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all var(--transition-speed);
+        border: 1px solid var(--border-color);
+      }
+      .filter-option:hover, .filter-option.active {
+        background-color: rgba(0, 229, 255, 0.1);
+        color: var(--accent-primary);
+        border-color: var(--accent-primary);
+      }
+      .search-tools {
+        position: relative;
+        margin-top: 1.5rem;
+      }
+      .search-tools input {
+        width: 100%;
+        padding: 0.75rem 1rem 0.75rem 3rem;
+        background-color: var(--bg-tertiary);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        color: var(--text-primary);
+        font-size: 1rem;
+      }
+      .search-tools i {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-tertiary);
+        font-size: 1.2rem;
+      }
+      .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 3rem auto;
+        padding: 0 2rem;
+      }
+      .tool-card {
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        transition: all var(--transition-speed);
+      }
+      .tool-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        border-color: var(--accent-primary);
+      }
+      .tool-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .tool-icon {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(0, 229, 255, 0.1);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        color: var(--accent-primary);
+      }
+      .tool-title h3 {
+        margin-bottom: 0.2rem;
+      }
+      .tool-title span {
+        font-size: 0.8rem;
+        color: var(--text-tertiary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .tool-body {
+        padding: 1.5rem;
+      }
+      .tool-description {
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+      }
+      .tool-features {
+        margin-bottom: 1.5rem;
+      }
+      .tool-features li {
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-secondary);
+      }
+      .tool-features i {
+        color: var(--accent-primary);
+        font-size: 1.2rem;
+      }
+      .tool-footer {
+        padding: 1.5rem;
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .tool-tags {
+        display: flex;
+        gap: 0.5rem;
+      }
+      .tool-tag {
+        padding: 0.25rem 0.5rem;
+        background-color: var(--bg-tertiary);
+        border-radius: 4px;
+        font-size: 0.8rem;
+        color: var(--text-tertiary);
+      }
+      .tool-action {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--accent-primary);
+        font-weight: 600;
+      }
+      .tool-action i {
+        transition: transform var(--transition-speed);
+      }
+      .tool-action:hover i {
+        transform: translateX(5px);
+      }
+      .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin: 3rem 0;
+      }
+      .pagination a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--bg-secondary);
+        border-radius: 4px;
+        border: 1px solid var(--border-color);
+        transition: all var(--transition-speed);
+      }
+      .pagination a:hover, .pagination a.active {
+        background-color: rgba(0, 229, 255, 0.1);
+        color: var(--accent-primary);
+        border-color: var(--accent-primary);
+      }
+      @media (max-width: 768px) {
+        .tools-header {
+          padding: 3rem 1rem;
+        }
+        .tools-filter {
+          margin-top: -1rem;
+          padding: 1.5rem;
+        }
+        .tools-grid {
+          padding: 0 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header x-data="{ mobileMenuOpen: false }">
+      <div class="logo-container">
+        <div class="logo">
+          <span class="logo-text">ART<span class="accent">ONE</span></span>
+          <span class="logo-subtitle">C&C Platform</span>
+        </div>
+      </div>
+      <button class="mobile-menu-button" @click="mobileMenuOpen = !mobileMenuOpen">
+        <i class="bx bx-menu"></i>
+      </button>
+      <nav :class="{'active': mobileMenuOpen}">
+        <a href="/"><i class="bx bx-home"></i> Inicio</a>
+        <a href="/documentation.html"><i class="bx bx-book-open"></i> Documentación</a>
+        <a href="/tools.html" aria-current="page"><i class="bx bx-wrench"></i> Herramientas</a>
+        <a href="/news.html"><i class="bx bx-news"></i> Noticias</a>
+        <a href="/community.html"><i class="bx bx-group"></i> Comunidad</a>
+        <a href="/contact.html"><i class="bx bx-envelope"></i> Contacto</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="/login.html" class="login-btn">Iniciar Sesión</a>
+        <a href="/register.html" class="register-btn">Registrarse</a>
+      </div>
+    </header>
+
+    <!-- Tools Header -->
+    <section class="tools-header">
+      <h1>Herramientas <span class="accent">Integradas</span></h1>
+      <p>Art One incluye un conjunto completo de herramientas especializadas para pentesting y ciberseguridad, diseñadas para trabajar de forma integrada y potenciar tus capacidades de análisis y explotación.</p>
+    </section>
+
+    <!-- Tools Filter: botones y búsqueda -->
+    <div class="tools-filter">
+      <div class="filter-options">
+        <div class="filter-option active">Todas</div>
+        <div class="filter-option">Reconocimiento</div>
+        <div class="filter-option">Escaneo</div>
+        <div class="filter-option">Explotación</div>
+        <div class="filter-option">Post-Explotación</div>
+        <div class="filter-option">Informes</div>
+      </div>
+      <div class="search-tools">
+        <i class="bx bx-search"></i>
+        <input type="text" placeholder="Buscar herramientas...">
+      </div>
+    </div>
+
+    <!-- Tools Grid -->
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-icon">
+            <i class="bx bx-radar"></i>
+          </div>
+          <div class="tool-title">
+            <h3>Network Scanner</h3>
+            <span><i class="bx bx-code"></i> v3.5.2</span>
+          </div>
+        </div>
+        <div class="tool-body">
+          <p class="tool-description">Herramienta avanzada para el descubrimiento y mapeo de redes, identificación de hosts activos y servicios en ejecución.</p>
+          <ul class="tool-features">
+            <li><i class="bx bx-check"></i> Escaneo rápido de subredes completas</li>
+            <li><i class="bx bx-check"></i> Detección de sistemas operativos</li>
+            <li><i class="bx bx-check"></i> Identificación de servicios y versiones</li>
+            <li><i class="bx bx-check"></i> Mapeo visual de la topología de red</li>
+          </ul>
+        </div>
+        <div class="tool-footer">
+          <div class="tool-tags">
+            <span class="tool-tag">Reconocimiento</span>
+            <span class="tool-tag">Red</span>
+          </div>
+          <a href="/tools/network-scanner.html" class="tool-action">
+            Detalles <i class="bx bx-right-arrow-alt"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-icon">
+            <i class="bx bx-shield-quarter"></i>
+          </div>
+          <div class="tool-title">
+            <h3>Vulnerability Scanner</h3>
+            <span><i class="bx bx-code"></i> v2.8.0</span>
+          </div>
+        </div>
+        <div class="tool-body">
+          <p class="tool-description">Escáner completo de vulnerabilidades con base de datos actualizada y capacidad de análisis profundo de sistemas y aplicaciones.</p>
+          <ul class="tool-features">
+            <li><i class="bx bx-check"></i> Detección de más de 10,000 vulnerabilidades</li>
+            <li><i class="bx bx-check"></i> Análisis de configuraciones inseguras</li>
+            <li><i class="bx bx-check"></i> Evaluación de riesgos y priorización</li>
+            <li><i class="bx bx-check"></i> Integración con bases de datos CVE</li>
+          </ul>
+        </div>
+        <div class="tool-footer">
+          <div class="tool-tags">
+            <span class="tool-tag">Escaneo</span>
+            <span class="tool-tag">Seguridad</span>
+          </div>
+          <a href="/tools/vulnerability-scanner.html" class="tool-action">
+            Detalles <i class="bx bx-right-arrow-alt"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-icon">
+            <i class="bx bx-code-block"></i>
+          </div>
+          <div class="tool-title">
+            <h3>Web App Tester</h3>
+            <span><i class="bx bx-code"></i> v4.1.3</span>
+          </div>
+        </div>
+        <div class="tool-body">
+          <p class="tool-description">Suite completa para pruebas de seguridad en aplicaciones web, incluyendo detección de vulnerabilidades OWASP Top 10.</p>
+          <ul class="tool-features">
+            <li><i class="bx bx-check"></i> Análisis de inyecciones SQL y XSS</li>
+            <li><i class="bx bx-check"></i> Pruebas de autenticación y autorización</li>
+            <li><i class="bx bx-check"></i> Detección de configuraciones inseguras</li>
+            <li><i class="bx bx-check"></i> Fuzzing de parámetros y formularios</li>
+          </ul>
+        </div>
+        <div class="tool-footer">
+          <div class="tool-tags">
+            <span class="tool-tag">Explotación</span>
+            <span class="tool-tag">Web</span>
+          </div>
+          <a href="/tools/web-app-tester.html" class="tool-action">
+            Detalles <i class="bx bx-right-arrow-alt"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-icon">
+            <i class="bx bx-lock-open-alt"></i>
+          </div>
+          <div class="tool-title">
+            <h3>Privilege Escalator</h3>
+            <span><i class="bx bx-code"></i> v2.3.7</span>
+          </div>
+        </div>
+        <div class="tool-body">
+          <p class="tool-description">Herramienta especializada en la detección y explotación de vulnerabilidades para escalar privilegios en sistemas comprometidos.</p>
+          <ul class="tool-features">
+            <li><i class="bx bx-check"></i> Detección automática de vectores de escalada</li>
+            <li><i class="bx bx-check"></i> Explotación de configuraciones incorrectas</li>
+            <li><i class="bx bx-check"></i> Bypass de controles de acceso</li>
+            <li><i class="bx bx-check"></i> Soporte para múltiples sistemas operativos</li>
+          </ul>
+        </div>
+        <div class="tool-footer">
+          <div class="tool-tags">
+            <span class="tool-tag">Post-Explotación</span>
+            <span class="tool-tag">Privilegios</span>
+          </div>
+          <a href="/tools/privilege-escalator.html" class="tool-action">
+            Detalles <i class="bx bx-right-arrow-alt"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-icon">
+            <i class="bx bx-data"></i>
+          </div>
+          <div class="tool-title">
+            <h3>Data Exfiltration</h3>
+            <span><i class="bx bx-code"></i> v1.9.5</span>
+          </div>
+        </div>
+        <div class="tool-body">
+          <p class="tool-description">Conjunto de herramientas para la extracción segura de datos en entornos restringidos durante pruebas de penetración autorizadas.</p>
+          <ul class="tool-features">
+            <li><i class="bx bx-check"></i> Múltiples canales de comunicación</li>
+            <li><i class="bx bx-check"></i> Técnicas de evasión de IDS/IPS</li>
+            <li><i class="bx bx-check"></i> Cifrado de datos en tránsito</li>
+            <li><i class="bx bx-check"></i> Transferencia a través de protocolos comunes</li>
+          </ul>
+        </div>
+        <div class="tool-footer">
+          <div class="tool-tags">
+            <span class="tool-tag">Post-Explotación</span>
+            <span class="tool-tag">Datos</span>
+          </div>
+          <a href="/tools/data-exfiltration.html" class="tool-action">
+            Detalles <i class="bx bx-right-arrow-alt"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-icon">
+            <i class="bx bx-file"></i>
+          </div>
+          <div class="tool-title">
+            <h3>Report Generator</h3>
+            <span><i class="bx bx-code"></i> v3.2.1</span>
+          </div>
+        </div>
+        <div class="tool-body">
+          <p class="tool-description">Sistema avanzado para la generación de informes detallados y personalizables sobre pruebas de penetración y análisis de vulnerabilidades.</p>
+          <ul class="tool-features">
+            <li><i class="bx bx-check"></i> Múltiples formatos de salida (PDF, HTML, DOCX)</li>
+            <li><i class="bx bx-check"></i> Plantillas personalizables</li>
+            <li><i class="bx bx-check"></i> Integración con otras herramientas</li>
+            <li><i class="bx bx-check"></i> Gráficos y visualizaciones avanzadas</li>
+          </ul>
+        </div>
+        <div class="tool-footer">
+          <div class="tool-tags">
+            <span class="tool-tag">Informes</span>
+            <span class="tool-tag">Documentación</span>
+          </div>
+          <a href="/tools/report-generator.html" class="tool-action">
+            Detalles <i class="bx bx-right-arrow-alt"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <a href="#"><i class="bx bx-chevron-right"></i></a>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-content">
+        <h2>Potencia tus <span class="accent">Capacidades</span></h2>
+        <p>Accede a todas las herramientas y funcionalidades avanzadas registrándote en nuestra plataforma.</p>
+        <div class="cta-buttons">
+          <a href="/register.html" class="primary-btn">Comenzar ahora</a>
+          <a href="/documentation.html" class="secondary-btn">Ver documentación</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <span class="logo-text">ART<span class="accent">ONE</span></span>
+            <span class="logo-subtitle">C&C Platform</span>
+          </div>
+          <p>Plataforma avanzada de Command & Control para profesionales de la ciberseguridad y pentesting.</p>
+          <div class="social-icons">
+            <a href="#"><i class="bx bxl-github"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-linkedin"></i></a>
+            <a href="#"><i class="bx bxl-discord-alt"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Enlaces rápidos</h3>
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/documentation.html">Documentación</a></li>
+            <li><a href="/tools.html">Herramientas</a></li>
+            <li><a href="/news.html">Noticias</a></li>
+            <li><a href="/community.html">Comunidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Recursos</h3>
+          <ul>
+            <li><a href="/tutorials.html">Tutoriales</a></li>
+            <li><a href="/api-docs.html">API</a></li>
+            <li><a href="/changelog.html">Changelog</a></li>
+            <li><a href="/roadmap.html">Roadmap</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="/terms.html">Términos de uso</a></li>
+            <li><a href="/privacy.html">Política de privacidad</a></li>
+            <li><a href="/license.html">Licencia</a></li>
+            <li><a href="/responsible-disclosure.html">Divulgación responsable</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Art One. Todos los derechos reservados.</p>
+        <p class="disclaimer">Art One debe utilizarse exclusivamente en entornos autorizados. No nos hacemos responsables del uso indebido de esta plataforma.</p>
+      </div>
+    </footer>
+  </body>
+</html>

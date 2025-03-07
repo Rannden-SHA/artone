@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Contacto | Art One - Plataforma C&C de Pentesting</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Contacta con el equipo de Art One - Plataforma avanzada de Command & Control para pentesting y ciberseguridad." />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script defer src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <script type="module" src="script.js"></script>
+    <style>
+      .contact-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+      
+      .contact-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      
+      .contact-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .contact-header p {
+        color: var(--text-secondary);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+      
+      .contact-info {
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+      }
+      
+      .contact-info h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        text-align: left;
+      }
+      
+      .contact-methods {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      .contact-method {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      
+      .contact-method i {
+        font-size: 1.5rem;
+        color: var(--accent-primary);
+      }
+      
+      .method-details h3 {
+        margin-bottom: 0.5rem;
+      }
+      
+      .method-details p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+      
+      .contact-form {
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+      }
+      
+      .contact-form h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        text-align: left;
+      }
+      
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+      
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--text-secondary);
+      }
+      
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background-color: var(--bg-tertiary);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        color: var(--text-primary);
+        font-size: 1rem;
+        transition: all var(--transition-speed);
+      }
+      
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: var(--accent-primary);
+        box-shadow: 0 0 0 2px rgba(0, 229, 255, 0.1);
+      }
+      
+      .form-group textarea {
+        min-height: 150px;
+        resize: vertical;
+      }
+      
+      .form-submit {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: var(--accent-primary);
+        color: var(--bg-primary);
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all var(--transition-speed);
+      }
+      
+      .form-submit:hover {
+        background-color: var(--accent-secondary);
+        transform: translateY(-2px);
+      }
+      
+      .faq-section {
+        margin-top: 4rem;
+      }
+      
+      .faq-section h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+      
+      .faq-item {
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+      }
+      
+      .faq-item h3 {
+        margin-bottom: 1rem;
+        color: var(--accent-primary);
+      }
+      
+      .faq-item p {
+        color: var(--text-secondary);
+      }
+      
+      @media (max-width: 768px) {
+        .contact-container {
+          padding: 2rem 1rem;
+        }
+        
+        .contact-header h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header x-data="{ mobileMenuOpen: false }">
+      <div class="logo-container">
+        <img src="source/logo_light.png" alt="Logo Art One" class="logo-image" />
+        <div class="logo">
+          <span class="logo-text">ART<span class="accent">ONE</span></span>
+        </div>
+      </div>
+      <button class="mobile-menu-button" @click="mobileMenuOpen = !mobileMenuOpen">
+        <i class="bx bx-menu"></i>
+      </button>
+      <nav :class="{'active': mobileMenuOpen}">
+        <a href="/"><i class="bx bx-home"></i> Inicio</a>
+        <a href="/documentation.html"><i class="bx bx-book-open"></i> Documentación</a>
+        <a href="/tools.html"><i class="bx bx-wrench"></i> Herramientas</a>
+        <a href="/news.html"><i class="bx bx-news"></i> Noticias</a>
+        <a href="/community.html"><i class="bx bx-group"></i> Comunidad</a>
+        <a href="/contact.html" aria-current="page"><i class="bx bx-envelope"></i> Contacto</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="/login.html" class="login-btn">Iniciar Sesión</a>
+        <a href="/register.html" class="register-btn">Registrarse</a>
+      </div>
+    </header>
+
+    <main class="contact-container">
+      <div class="contact-header">
+        <h1>Contacta con <span class="accent">Nosotros</span></h1>
+        <p>¿Tienes preguntas sobre Art One? Nuestro equipo está aquí para ayudarte. Elige el método de contacto que prefieras o utiliza nuestro formulario.</p>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2>Métodos de Contacto</h2>
+          <div class="contact-methods">
+            <div class="contact-method">
+              <i class="bx bx-envelope"></i>
+              <div class="method-details">
+                <h3>Email</h3>
+                <p>Soporte técnico y consultas generales</p>
+                <a href="mailto:support@artone.com">support@artone.com</a>
+              </div>
+            </div>
+            
+            <div class="contact-method">
+              <i class="bx bx-message-square-dots"></i>
+              <div class="method-details">
+                <h3>Chat en vivo</h3>
+                <p>Disponible 24/7 para usuarios registrados</p>
+                <a href="#">Iniciar chat</a>
+              </div>
+            </div>
+            
+            <div class="contact-method">
+              <i class="bx bx-support"></i>
+              <div class="method-details">
+                <h3>Centro de ayuda</h3>
+                <p>Base de conocimientos y tutoriales</p>
+                <a href="#">Visitar centro de ayuda</a>
+              </div>
+            </div>
+            
+            <div class="contact-method">
+              <i class="bx bxl-discord"></i>
+              <div class="method-details">
+                <h3>Discord</h3>
+                <p>Únete a nuestra comunidad</p>
+                <a href="#">Servidor de Discord</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form">
+          <h2>Envíanos un Mensaje</h2>
+          <form action="/contact" method="POST">
+            <div class="form-group">
+              <label for="name">Nombre completo</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="subject">Asunto</label>
+              <select id="subject" name="subject" required>
+                <option value="">Selecciona un asunto</option>
+                <option value="support">Soporte técnico</option>
+                <option value="sales">Ventas</option>
+                <option value="billing">Facturación</option>
+                <option value="other">Otro</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Mensaje</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            
+            <button type="submit" class="form-submit">Enviar mensaje</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="faq-section">
+        <h2>Preguntas <span class="accent">Frecuentes</span></h2>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h3>¿Cómo puedo empezar a usar Art One?</h3>
+            <p>Regístrate en nuestra plataforma y sigue la guía de inicio rápido en la documentación. Ofrecemos tutoriales detallados para nuevos usuarios.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h3>¿Qué métodos de pago aceptan?</h3>
+            <p>Aceptamos tarjetas de crédito/débito, PayPal y transferencias bancarias. También ofrecemos facturación empresarial para cuentas corporativas.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h3>¿Ofrecen soporte empresarial?</h3>
+            <p>Sí, disponemos de planes empresariales con soporte dedicado 24/7, formación personalizada y gestión de cuenta especializada.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h3>¿Cómo reporto un problema de seguridad?</h3>
+            <p>Sigue nuestra política de divulgación responsable y contacta con nuestro equipo de seguridad en security@artone.com.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <span class="logo-text">ART<span class="accent">ONE</span></span>
+            <span class="logo-subtitle">C&C Platform</span>
+          </div>
+          <p>Plataforma avanzada de Command & Control para profesionales de la ciberseguridad y pentesting.</p>
+          <div class="social-icons">
+            <a href="#"><i class="bx bxl-github"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-linkedin"></i></a>
+            <a href="#"><i class="bx bxl-discord-alt"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Enlaces rápidos</h3>
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/documentation.html">Documentación</a></li>
+            <li><a href="/tools.html">Herramientas</a></li>
+            <li><a href="/news.html">Noticias</a></li>
+            <li><a href="/community.html">Comunidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Recursos</h3>
+          <ul>
+            <li><a href="/tutorials.html">Tutoriales</a></li>
+            <li><a href="/api-docs.html">API</a></li>
+            <li><a href="/changelog.html">Changelog</a></li>
+            <li><a href="/roadmap.html">Roadmap</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="/terms.html">Términos de uso</a></li>
+            <li><a href="/privacy.html">Política de privacidad</a></li>
+            <li><a href="/license.html">Licencia</a></li>
+            <li><a href="/responsible-disclosure.html">Divulgación responsable</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Art One. Todos los derechos reservados.</p>
+        <p class="disclaimer">Art One debe utilizarse exclusivamente en entornos autorizados. No nos hacemos responsables del uso indebido de esta plataforma.</p>
+      </div>
+    </footer>
+  </body>
+</html>

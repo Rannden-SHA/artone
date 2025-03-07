@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Política de Privacidad | Art One - Plataforma C&C de Pentesting</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Política de privacidad de Art One - Plataforma avanzada de Command & Control para pentesting y ciberseguridad." />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script defer src="https://unpkg.com/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <script type="module" src="script.js"></script>
+    <style>
+      .privacy-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+      
+      .privacy-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      
+      .privacy-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .privacy-header p {
+        color: var(--text-secondary);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .privacy-content {
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+      }
+      
+      .privacy-section {
+        margin-bottom: 3rem;
+      }
+      
+      .privacy-section:last-child {
+        margin-bottom: 0;
+      }
+      
+      .privacy-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        color: var(--accent-primary);
+        text-align: left;
+      }
+      
+      .privacy-section h3 {
+        font-size: 1.3rem;
+        margin: 2rem 0 1rem;
+        color: var(--text-primary);
+      }
+      
+      .privacy-section p {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+      
+      .privacy-section ul {
+        margin: 1rem 0 1.5rem 1.5rem;
+      }
+      
+      .privacy-section li {
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+      }
+      
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+      }
+      
+      .data-table th,
+      .data-table td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+      }
+      
+      .data-table th {
+        background-color: var(--bg-tertiary);
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+      
+      .data-table td {
+        color: var(--text-secondary);
+      }
+      
+      .data-table tr:last-child td {
+        border-bottom: none;
+      }
+      
+      .privacy-notice {
+        background-color: rgba(0, 229, 255, 0.1);
+        border: 1px solid var(--accent-primary);
+        border-radius: 4px;
+        padding: 1.5rem;
+        margin: 2rem 0;
+      }
+      
+      .privacy-notice h4 {
+        color: var(--accent-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .privacy-notice i {
+        font-size: 1.5rem;
+      }
+      
+      .privacy-notice p {
+        color: var(--text-secondary);
+        margin-bottom: 0;
+      }
+      
+      .privacy-footer {
+        text-align: center;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+      }
+      
+      .privacy-footer p {
+        color: var(--text-tertiary);
+        font-size: 0.9rem;
+      }
+      
+      .privacy-footer a {
+        color: var(--accent-primary);
+      }
+      
+      @media (max-width: 768px) {
+        .privacy-container {
+          padding: 2rem 1rem;
+        }
+        
+        .privacy-header h1 {
+          font-size: 2rem;
+        }
+        
+        .privacy-content {
+          padding: 1.5rem;
+        }
+        
+        .privacy-section h2 {
+          font-size: 1.5rem;
+        }
+        
+        .data-table {
+          display: block;
+          overflow-x: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header x-data="{ mobileMenuOpen: false }">
+      <div class="logo-container">
+        <img src="source/logo_light.png" alt="Logo Art One" class="logo-image" />
+        <div class="logo">
+          <span class="logo-text">ART<span class="accent">ONE</span></span>
+        </div>
+      </div>
+      <button class="mobile-menu-button" @click="mobileMenuOpen = !mobileMenuOpen">
+        <i class="bx bx-menu"></i>
+      </button>
+      <nav :class="{'active': mobileMenuOpen}">
+        <a href="/"><i class="bx bx-home"></i> Inicio</a>
+        <a href="/documentation.html"><i class="bx bx-book-open"></i> Documentación</a>
+        <a href="/tools.html"><i class="bx bx-wrench"></i> Herramientas</a>
+        <a href="/news.html"><i class="bx bx-news"></i> Noticias</a>
+        <a href="/community.html"><i class="bx bx-group"></i> Comunidad</a>
+        <a href="/contact.html"><i class="bx bx-envelope"></i> Contacto</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="/login.html" class="login-btn">Iniciar Sesión</a>
+        <a href="/register.html" class="register-btn">Registrarse</a>
+      </div>
+    </header>
+
+    <main class="privacy-container">
+      <div class="privacy-header">
+        <h1>Política de <span class="accent">Privacidad</span></h1>
+        <p>Tu privacidad es importante para nosotros. Esta política describe cómo recopilamos, utilizamos y protegemos tu información personal.</p>
+      </div>
+      
+      <div class="privacy-content">
+        <div class="privacy-section">
+          <h2>1. Información que recopilamos</h2>
+          <p>Recopilamos diferentes tipos de información para proporcionar y mejorar nuestros servicios:</p>
+          
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Tipo de datos</th>
+                <th>Propósito</th>
+                <th>Base legal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Información de registro</td>
+                <td>Creación y gestión de cuenta</td>
+                <td>Ejecución del contrato</td>
+              </tr>
+              <tr>
+                <td>Datos de uso</td>
+                <td>Mejora del servicio</td>
+                <td>Interés legítimo</td>
+              </tr>
+              <tr>
+                <td>Información técnica</td>
+                <td>Seguridad y rendimiento</td>
+                <td>Interés legítimo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="privacy-section">
+          <h2>2. Uso de la información</h2>
+          <p>Utilizamos la información recopilada para:</p>
+          <ul>
+            <li>Proporcionar y mantener nuestros servicios</li>
+            <li>Mejorar y personalizar la experiencia del usuario</li>
+            <li>Desarrollar nuevas características y funcionalidades</li>
+            <li>Prevenir actividades fraudulentas y mejorar la seguridad</li>
+            <li>Cumplir con obligaciones legales</li>
+          </ul>
+        </div>
+        
+        <div class="privacy-section">
+          <h2>3. Protección de datos</h2>
+          <p>Implementamos medidas de seguridad técnicas y organizativas para proteger tu información:</p>
+          <ul>
+            <li>Cifrado de datos en tránsito y en reposo</li>
+            <li>Controles de acceso estrictos</li>
+            <li>Monitorización continua de seguridad</li>
+            <li>Auditorías regulares de seguridad</li>
+          </ul>
+          
+          <div class="privacy-notice">
+            <h4><i class="bx bx-shield-quarter"></i> Compromiso de seguridad</h4>
+            <p>Nos comprometemos a proteger tu información personal utilizando los más altos estándares de seguridad de la industria.</p>
+          </div>
+        </div>
+        
+        <div class="privacy-section">
+          <h2>4. Compartir información</h2>
+          <p>No vendemos ni compartimos tu información personal con terceros, excepto:</p>
+          <ul>
+            <li>Cuando sea necesario para proporcionar nuestros servicios</li>
+            <li>Con tu consentimiento explícito</li>
+            <li>Cuando sea requerido por ley</li>
+          </ul>
+        </div>
+        
+        <div class="privacy-section">
+          <h2>5. Tus derechos</h2>
+          <p>Como usuario, tienes derecho a:</p>
+          <ul>
+            <li>Acceder a tu información personal</li>
+            <li>Rectificar datos inexactos</li>
+            <li>Solicitar la eliminación de tus datos</li>
+            <li>Oponerte al procesamiento de datos</li>
+            <li>Portar tus datos a otro servicio</li>
+          </ul>
+        </div>
+        
+        <div class="privacy-section">
+          <h2>6. Cookies y tecnologías similares</h2>
+          <p>Utilizamos cookies y tecnologías similares para mejorar la experiencia del usuario y analizar el uso de nuestros servicios. Puedes controlar estas preferencias en la configuración de tu navegador.</p>
+        </div>
+        
+        <div class="privacy-footer">
+          <p>Última actualización: Mayo 2025</p>
+          <p>Para ejercer tus derechos o realizar consultas sobre privacidad, contacta con nuestro Delegado de Protección de Datos en <a href="mailto:privacy@artone.com">privacy@artone.com</a></p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <span class="logo-text">ART<span class="accent">ONE</span></span>
+            <span class="logo-subtitle">C&C Platform</span>
+          </div>
+          <p>Plataforma avanzada de Command & Control para profesionales de la ciberseguridad y pentesting.</p>
+          <div class="social-icons">
+            <a href="#"><i class="bx bxl-github"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+            <a href="#"><i class="bx bxl-linkedin"></i></a>
+            <a href="#"><i class="bx bxl-discord-alt"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Enlaces rápidos</h3>
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/documentation.html">Documentación</a></li>
+            <li><a href="/tools.html">Herramientas</a></li>
+            <li><a href="/news.html">Noticias</a></li>
+            <li><a href="/community.html">Comunidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Recursos</h3>
+          <ul>
+            <li><a href="/tutorials.html">Tutoriales</a></li>
+            <li><a href="/api-docs.html">API</a></li>
+            <li><a href="/changelog.html">Changelog</a></li>
+            <li><a href="/roadmap.html">Roadmap</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="/terms.html">Términos de uso</a></li>
+            <li><a href="/privacy.html">Política de privacidad</a></li>
+            <li><a href="/license.html">Licencia</a></li>
+            <li><a href="/responsible-disclosure.html">Divulgación responsable</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Art One. Todos los derechos reservados.</p>
+        <p class="disclaimer">Art One debe utilizarse exclusivamente en entornos autorizados. No nos hacemos responsables del uso indebido de esta plataforma.</p>
+      </div>
+    </footer>
+  </body>
+</html>
