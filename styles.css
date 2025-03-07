@@ -1114,3 +1114,224 @@ footer {
     font-size: 2rem;
   }
 }
+
+/* =============== MODAL HACKBCN =============== */
+
+/* El contenedor general del modal, oculto por defecto */
+.hackbcn-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none; /* Oculto inicialmente */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Por encima de todo el contenido */
+}
+
+/* Cuando el modal está activo, se muestra como flex container */
+.hackbcn-modal.active {
+  display: flex;
+}
+
+/* Fondo oscuro (overlay) */
+.hackbcn-overlay {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Oscurece el fondo */
+  z-index: 0;
+  opacity: 0;
+  animation: fadeIn 0.4s forwards;
+}
+
+/* Contenido del modal */
+.hackbcn-modal-content {
+  position: relative;
+  z-index: 1;
+  background-color: var(--bg-primary, #0a0e17);
+  color: var(--text-primary, #f3f4f6);
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  animation: slideDown 0.5s ease forwards;
+  opacity: 0;
+  transform: translateY(-50px);
+}
+
+/* Botón de cierre */
+.hackbcn-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: var(--text-secondary, #9ca3af);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.hackbcn-modal-close:hover {
+  color: var(--accent-primary, #00e5ff);
+}
+
+/* Título */
+.hackbcn-modal-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--accent-primary, #00e5ff);
+  letter-spacing: -0.5px;
+}
+
+/* Subtítulo */
+.hackbcn-subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: var(--text-secondary, #9ca3af);
+}
+
+/* Grid de countdown (reutiliza el estilo que ya tenías) */
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.countdown-item {
+  background-color: rgba(31, 41, 55, 0.6);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.countdown-number {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.countdown-label {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  color: var(--accent-primary, #00e5ff);
+}
+
+/* Botón de compra */
+.hackbcn-btn {
+  display: inline-block;
+  background-color: var(--accent-primary, #00e5ff);
+  color: var(--bg-primary, #0a0e17);
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.hackbcn-btn:hover {
+  background-color: var(--accent-secondary, #00b8d4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 229, 255, 0.2);
+}
+
+/* Texto promocional */
+.hackbcn-promo {
+  font-size: 0.9rem;
+  color: var(--text-secondary, #9ca3af);
+}
+
+/* Animaciones de entrada */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividad */
+@media (max-width: 480px) {
+  .hackbcn-modal-content h1 {
+    font-size: 1.6rem;
+  }
+  .countdown-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .countdown-number {
+    font-size: 1.8rem;
+  }
+}
+
+/* Texto de código en azul */
+.blue-code {
+  color: var(--accent-primary, #00e5ff);
+}
+
+/* Ajustamos la disposición del número y la etiqueta */
+.countdown-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.countdown-label {
+  display: block; /* Para que quede debajo */
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  color: var(--accent-primary, #00e5ff);
+}
+
+/* Clase que aplicamos al número cuando cambia */
+.glitch {
+  animation: glitch 0.4s ease;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0, 0);
+    text-shadow: 0 0 1px #00e5ff;
+  }
+  20% {
+    transform: translate(-2px, 2px);
+    text-shadow: -2px 2px 2px #00e5ff;
+  }
+  40% {
+    transform: translate(2px, -2px);
+    text-shadow: 2px -2px 2px #00e5ff;
+  }
+  60% {
+    transform: translate(-1px, 1px);
+    text-shadow: -1px 1px 2px #00e5ff;
+  }
+  80% {
+    transform: translate(1px, -1px);
+    text-shadow: 1px -1px 2px #00e5ff;
+  }
+  100% {
+    transform: translate(0, 0);
+    text-shadow: 0 0 1px #00e5ff;
+  }
+}
+
+/* Ajusta si quieres un tamaño diferente para móviles */
+@media (max-width: 480px) {
+  .countdown-number {
+    font-size: 2rem;
+  }
+}
+
+/* =============== END MODAL HACKBCN =============== */
