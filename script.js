@@ -200,3 +200,67 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+//########### MODAL HACKBN
+window.addEventListener('load', () => {
+  // Fecha del evento
+  const countdownDate = new Date("May 16, 2025 10:00:00").getTime();
+
+  // Función auxiliar para actualizar un número con efecto glitch
+  function updateNumber(element, newValue) {
+    // Solo aplica el efecto si el valor realmente cambió
+    if (element.textContent !== newValue.toString()) {
+      element.textContent = newValue;
+      // Forzamos un reflow para reiniciar la animación
+      element.classList.remove('glitch');
+      void element.offsetWidth; // "hack" para reiniciar animaciones CSS
+      element.classList.add('glitch');
+    }
+  }
+
+  // Actualiza el contador cada segundo
+  const timerInterval = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+
+    if (distance < 0) {
+      clearInterval(timerInterval);
+      updateNumber(document.getElementById("days"), 0);
+      updateNumber(document.getElementById("hours"), 0);
+      updateNumber(document.getElementById("minutes"), 0);
+      updateNumber(document.getElementById("seconds"), 0);
+      return;
+    }
+
+    // Cálculo de días, horas, minutos y segundos
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Actualizamos cada span con efecto glitch
+    updateNumber(document.getElementById("days"), days);
+    updateNumber(document.getElementById("hours"), hours);
+    updateNumber(document.getElementById("minutes"), minutes);
+    updateNumber(document.getElementById("seconds"), seconds);
+  }, 1000);
+
+  // Mostrar el modal a los 3 segundos (o cuando tú decidas)
+  setTimeout(() => {
+    const hackbcnModal = document.getElementById('hackbcn-modal');
+    hackbcnModal.classList.add('active');
+  }, 3000);
+
+  // Cerrar modal
+  const modalClose = document.getElementById('modal-close');
+  const modalOverlay = document.getElementById('modal-overlay');
+  const hackbcnModal = document.getElementById('hackbcn-modal');
+
+  modalClose.addEventListener('click', () => {
+    hackbcnModal.classList.remove('active');
+  });
+  modalOverlay.addEventListener('click', () => {
+    hackbcnModal.classList.remove('active');
+  });
+});
+//########### END MODAL HACKBN
