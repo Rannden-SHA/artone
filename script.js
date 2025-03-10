@@ -225,19 +225,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const currentPath = window.location.pathname;
-  console.log('currentPath:', currentPath);
-  
-  const headerLinks = document.querySelectorAll('#header-container a');
-  headerLinks.forEach(link => {
-    const href = link.getAttribute('href');
-    console.log('link href:', href);
-    if (href === currentPath || (currentPath === '/' && href === '/index.html')) {
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
-    }
-  });
+  setTimeout(() => {
+    const currentPath = window.location.pathname;
+    const headerLinks = document.querySelectorAll('#header-container a');
+    headerLinks.forEach(link => {
+      if (link.getAttribute('href') === currentPath || 
+          (currentPath === '/' && link.getAttribute('href') === '/index.html')) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }, 500); // 500ms de retardo
 });
 
 //########### MODAL HACKBN
