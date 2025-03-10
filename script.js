@@ -224,21 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
   loadFragment('footer.html', 'footer-container');
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    const currentPath = window.location.pathname;
-    const headerLinks = document.querySelectorAll('#header-container a');
-    headerLinks.forEach(link => {
-      if (link.getAttribute('href') === currentPath || 
-          (currentPath === '/' && link.getAttribute('href') === '/index.html')) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
-    });
-  }, 500); // 500ms de retardo
-});
-
 //########### MODAL HACKBN
 window.addEventListener('load', () => {
   // Fecha del evento
