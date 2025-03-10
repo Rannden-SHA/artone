@@ -188,29 +188,7 @@
     </style>
   </head>
   <body>
-    <header x-data="{ mobileMenuOpen: false }">
-      <div class="logo-container">
-        <img src="source/logo_light.png" alt="Logo Art One" class="logo-image" />
-        <div class="logo">
-          <span class="logo-text">ART<span class="accent">ONE</span></span>
-        </div>
-      </div>
-      <button class="mobile-menu-button" @click="mobileMenuOpen = !mobileMenuOpen">
-        <i class="bx bx-menu"></i>
-      </button>
-      <nav :class="{'active': mobileMenuOpen}">
-        <a href="/"><i class="bx bx-home"></i> Inicio</a>
-        <a href="/documentation.html"><i class="bx bx-book-open"></i> Documentación</a>
-        <a href="/tools.html"><i class="bx bx-wrench"></i> Herramientas</a>
-        <a href="/news.html"><i class="bx bx-news"></i> Noticias</a>
-        <a href="/community.html"><i class="bx bx-group"></i> Comunidad</a>
-        <a href="/contact.html" aria-current="page"><i class="bx bx-envelope"></i> Contacto</a>
-      </nav>
-      <div class="auth-buttons">
-        <a href="/login.html" class="login-btn">Iniciar Sesión</a>
-        <a href="/register.html" class="register-btn">Registrarse</a>
-      </div>
-    </header>
+    <div id="header-container"></div>
 
     <main class="contact-container">
       <div class="contact-header">
@@ -320,55 +298,6 @@
       </div>
     </main>
 
-    <footer>
-      <div class="footer-grid">
-        <div class="footer-column">
-          <div class="footer-logo">
-            <span class="logo-text">ART<span class="accent">ONE</span></span>
-            <span class="logo-subtitle">C&C Platform</span>
-          </div>
-          <p>Plataforma avanzada de Command & Control para profesionales de la ciberseguridad y pentesting.</p>
-          <div class="social-icons">
-            <a href="#"><i class="bx bxl-github"></i></a>
-            <a href="#"><i class="bx bxl-twitter"></i></a>
-            <a href="#"><i class="bx bxl-linkedin"></i></a>
-            <a href="#"><i class="bx bxl-discord-alt"></i></a>
-          </div>
-        </div>
-        <div class="footer-column">
-          <h3>Enlaces rápidos</h3>
-          <ul>
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/documentation.html">Documentación</a></li>
-            <li><a href="/tools.html">Herramientas</a></li>
-            <li><a href="/news.html">Noticias</a></li>
-            <li><a href="/community.html">Comunidad</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h3>Recursos</h3>
-          <ul>
-            <li><a href="/tutorials.html">Tutoriales</a></li>
-            <li><a href="/api-docs.html">API</a></li>
-            <li><a href="/changelog.html">Changelog</a></li>
-            <li><a href="/roadmap.html">Roadmap</a></li>
-            <li><a href="/faq.html">FAQ</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h3>Legal</h3>
-          <ul>
-            <li><a href="/terms.html">Términos de uso</a></li>
-            <li><a href="/privacy.html">Política de privacidad</a></li>
-            <li><a href="/license.html">Licencia</a></li>
-            <li><a href="/responsible-disclosure.html">Divulgación responsable</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Art One. Todos los derechos reservados.</p>
-        <p class="disclaimer">Art One debe utilizarse exclusivamente en entornos autorizados. No nos hacemos responsables del uso indebido de esta plataforma.</p>
-      </div>
-    </footer>
+    <div id="footer-container"></div>
   </body>
 </html>
