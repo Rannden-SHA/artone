@@ -1,0 +1,23 @@
+<header x-data="{ mobileMenuOpen: false }">
+  <div class="logo-container">
+    <img src="source/logo_light.png" alt="Logo Art One" class="logo-image" />
+    <div class="logo">
+      <span class="logo-text">ART<span class="accent">ONE</span></span>
+    </div>
+  </div>
+  <button class="mobile-menu-button" @click="mobileMenuOpen = !mobileMenuOpen">
+    <i class="bx bx-menu"></i>
+  </button>
+  <nav :class="{'active': mobileMenuOpen}">
+    <a href="/" aria-current="page"><i class="bx bx-home"></i> Inicio</a>
+    <a href="/documentation.html"><i class="bx bx-book-open"></i> Documentación</a>
+    <a href="/tools.html"><i class="bx bx-wrench"></i> Herramientas</a>
+    <a href="/news.html"><i class="bx bx-news"></i> Noticias</a>
+    <a href="/community.html"><i class="bx bx-group"></i> Comunidad</a>
+    <a href="/contact.html"><i class="bx bx-envelope"></i> Contacto</a>
+  </nav>
+  <div class="auth-buttons">
+    <a href="/login.html" class="login-btn">Iniciar Sesión</a>
+    <a href="/register.html" class="register-btn">Registrarse</a>
+  </div>
+</header>
