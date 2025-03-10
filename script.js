@@ -226,15 +226,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const currentPath = window.location.pathname;
-  // Selecciona todos los enlaces dentro del contenedor del header
+  console.log('currentPath:', currentPath);
+  
   const headerLinks = document.querySelectorAll('#header-container a');
-
   headerLinks.forEach(link => {
-    // Compara el atributo href con la ruta actual.
-    // Puede que necesites ajustar la comparación según cómo estén definidos los href.
-    if (link.getAttribute('href') === currentPath || 
-        // Si la ruta raíz es '/' y el enlace es '/index.html'
-        (currentPath === '/' && link.getAttribute('href') === '/index.html')) {
+    const href = link.getAttribute('href');
+    console.log('link href:', href);
+    if (href === currentPath || (currentPath === '/' && href === '/index.html')) {
       link.classList.add('active');
     } else {
       link.classList.remove('active');
